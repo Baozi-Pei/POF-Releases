@@ -40,3 +40,30 @@ html[lang=zh-CN] h1{font-size:clamp(60px,7vw,106px);line-height:1.15;letter-spac
 .faq-grid details[open] p{animation:answer-enter .3s ease-out}
 @keyframes answer-enter{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.cinematic-motion .workflow-steps li{opacity:1;transform:none}.hero-monogram,.hero-image img,.hero-foreground,.landscape-photo img{transform:none!important}}
+
+/* PAI attribution belongs to the introduction, without competing with the title. */
+.hero-affiliation{display:flex;align-items:center;gap:13px;margin-top:24px;color:#f7f5f0}
+.university-mark{display:block;flex:0 0 32px;width:32px;height:32px;overflow:hidden;opacity:.85}
+.university-mark img{height:32px;width:auto;max-width:none;filter:grayscale(1) brightness(0) invert(1)}
+.affiliation-name,.affiliation-school{display:block;line-height:1.55}
+.affiliation-name{font-size:11px;font-weight:500;letter-spacing:.015em}
+.affiliation-school{font-size:10px;color:#d2d3cb;letter-spacing:.025em}
+.hero-manual{font-size:12px}.desktop-nav{gap:25px}
+.product-image-wrap{aspect-ratio:1919/1024}.stage-footer{gap:16px}.view-tabs{min-width:0;overflow-x:auto;scrollbar-width:thin}.view-tabs button{white-space:nowrap;flex-shrink:0}.stage-count{flex-shrink:0}
+.workflow-layout{grid-template-columns:.74fr 1.26fr;gap:60px}
+.workflow-visual{padding-top:32px}.workflow-preview{border-radius:7px;overflow:hidden;border:1px solid #ffffff1a;box-shadow:0 24px 70px #0004}
+.workflow-preview .terrain-photo{aspect-ratio:1919/1025;object-fit:contain;opacity:1;border-radius:0}
+.example-label{font-size:10px;margin-top:16px;line-height:1.7}
+.pof-section{background:var(--paper);color:var(--ink);padding:120px 0}
+.pof-layout{display:grid;grid-template-columns:1fr .9fr;gap:100px;align-items:center}
+.pof-copy>.eyebrow{color:var(--muted);margin-bottom:30px}.pof-copy h2{font-size:clamp(40px,4.2vw,64px);margin-bottom:30px}
+.pof-copy>p:not(.eyebrow){font-size:15px;line-height:1.9;max-width:530px;color:var(--ink)}.pof-copy .pof-secondary{margin-top:20px;color:var(--muted)!important}
+.pof-copy>.text-link{margin-top:24px;color:var(--ink)}
+.pof-path{position:relative;display:flex;gap:22px;padding:24px 0;border-top:1px solid #20231f24}.path-number{font-family:var(--font-display);font-size:11px;color:var(--muted);margin-top:3px}
+.pof-path h3,.pof-output h3{font-size:20px;letter-spacing:-.03em;margin-bottom:10px}.pof-path p,.pof-output p{font-size:12px;line-height:1.8;color:var(--muted);max-width:330px}
+.pof-output{display:flex;gap:22px;background:var(--ink);color:var(--white);padding:26px 28px;margin-top:10px;border-radius:6px}.pof-output p{color:#bdc0b7}.output-mark{color:var(--orange);font-size:28px;line-height:1}
+.pof-caveat{font-size:10px;line-height:1.9;color:var(--muted);margin-top:18px;max-width:420px}
+.manual-feature{display:flex;gap:18px;align-items:flex-start;margin-top:32px;padding-top:25px;border-top:1px solid var(--line);max-width:380px}
+.manual-symbol{color:var(--orange);font-size:25px;line-height:1}.manual-feature strong{display:block;font-size:15px;font-weight:500}.manual-feature div>span{display:block;color:var(--gray);font-size:12px;line-height:1.8;margin-top:8px}.manual-feature:hover strong{text-decoration:underline;text-underline-offset:5px}
+@media(max-width:1100px){.desktop-nav{gap:18px}.workflow-layout{gap:36px;grid-template-columns:.8fr 1.2fr}.pof-layout{gap:50px}.view-tabs button{padding-inline:16px}}
+@media(max-width:767px){.hero{min-height:890px}.hero-affiliation{margin-top:24px;gap:11px}.affiliation-name{font-size:10px;max-width:280px}.affiliation-school{font-size:9px}.university-mark{flex-basis:29px;width:29px;height:29px}.university-mark img{height:29px}.stage-footer{padding:12px 0}.view-tabs button{padding:9px 14px;font-size:11px}.stage-count{font-size:9px}.workflow-layout{grid-template-columns:1fr;gap:40px}.pof-section{padding:76px 0}.pof-layout{grid-template-columns:1fr;gap:40px}.pof-copy h2{font-size:40px}.pof-path{padding:20px 0}.pof-copy>p:not(.eyebrow){font-size:14px}.manual-feature{max-width:none}}

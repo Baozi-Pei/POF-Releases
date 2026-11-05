@@ -1,55 +1,7 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>POF Workbench 使用手册</title>
-<style>
-* { box-sizing: border-box; }
-html { background: #e5e5e5; }
-body { max-width: 850px; margin: 32px auto; padding: 48px 60px;
-       background: #fff; font-size: 15px; }
-h1 { font-weight: 600; letter-spacing: -.02em; padding-bottom: 18px; }
-h2 { margin-top: 32px; font-weight: 600; }
-h3 { margin-top: 24px; }
-table { border-collapse: collapse; width: 100%; font-size: .94em; margin: 16px 0; }
-th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #dedede;
-         vertical-align: top; overflow-wrap: anywhere; }
-th { background: #f1f1f1; font-weight: 600; }
-pre { background: #f3f3f3; padding: 14px 18px; border-radius: 6px;
-      white-space: pre-wrap; overflow-wrap: anywhere; font-size: .86em; line-height: 1.65; }
-code { font-family: Consolas, "Microsoft YaHei", monospace; }
-blockquote { margin: 20px 0; padding: 6px 18px; background: #f3f3f3;
-             border-left: 3px solid #da7059; }
-a { color: #9e4e3c; text-underline-offset: 3px; }
-.page-break { margin-top: 56px; border-top: 1px solid #ddd; padding-top: 10px; }
-@media screen and (max-width: 700px) { body { margin: 0; padding: 22px; } }
-@media print {
- html, body { background: #fff; }
- body { max-width: none; margin: 0; padding: 0; }
- .page-break { margin: 0; padding: 0; border: none; }
- p { orphans: 3; widows: 3; }
- li { orphans: 2; widows: 2; }
- figure img { max-height: 110mm; object-fit: contain; }
-}
-</style></head><body><style>
-@page { size: A4; margin: 23mm 24mm 24mm; }
-body { font-family: "Microsoft YaHei", "Noto Sans CJK SC", sans-serif; color: #303030; line-height: 1.72; }
-h1, h2, h3 { break-after: avoid; }
-pre, blockquote, figure { break-inside: avoid; }
-tr { break-inside: avoid; }
-thead { display: table-header-group; }
-img { max-width: 100%; height: auto; }
-.page-break { break-before: page; page-break-before: always; }
-figure { margin: 20px 0; break-inside: avoid; }
-figure img { display:block; width:100%; max-height:105mm; object-fit:contain; }
-figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
-.manual-header { display:flex; width:100%; align-items:center; gap:14px; padding:0 0 16px; margin-bottom:26px; border-bottom:1px solid #d9d9d9; }
-.manual-header img { display:block; object-fit:contain; }
-.manual-header .pof-logo { width:38px; height:30px; flex:0 0 38px; }
-.manual-header .sustech-logo { width:158px; max-width:158px; height:40px; flex:0 0 158px; }
-.manual-header .lab-line { flex:1 1 0; min-width:0; color:#555; font-size:8pt; text-align:left; line-height:1.55; }
-@media print { body { font-size: 10.5pt; } h1 { font-size: 23pt; } h2 { font-size: 16pt; } h3 { font-size: 12pt; } a { color: inherit; text-decoration: none; } }
-</style>
-
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="POF Workbench 图文使用手册：标注、SHP、主动学习、训练、批量推理和设置。"><title>POF Workbench 使用手册</title><link rel="stylesheet" href="reader.css"><script type="module" src="reader.mjs"></script></head>
+<body class="reader"><header class="reader-bar"><a class="reader-brand" href="../index.html"><img src="manual-images/pof-logo-black-header.png" alt="">POF Workbench<span>使用手册</span></a><nav class="reader-actions" aria-label="手册操作"><a href="en.html" data-reader-language="en"  lang="en">EN</a><a href="index.html" data-reader-language="zh" class="current" aria-current="page" lang="zh-CN">中文</a><a class="download-link" href="POF-Workbench-Manual-ZH.pdf" download>下载 PDF ↓</a><button data-print>打印</button></nav></header><div class="reader-progress" aria-hidden="true"></div>
+<div class="reader-layout"><details class="reader-nav" open><summary>章节目录</summary><ol><li><a href="#chapter-01"><span>01</span>软件概述</a></li><li><a href="#chapter-02"><span>02</span>安装与首次配置</a></li><li><a href="#chapter-03"><span>03</span>项目与任务</a></li><li><a href="#chapter-04"><span>04</span>数据与标签检查</a></li><li><a href="#chapter-05"><span>05</span>独立标注 · mask / SHP</a></li><li><a href="#chapter-06"><span>06</span>绘制、修改与快捷键</a></li><li><a href="#chapter-07"><span>07</span>主动学习</a></li><li><a href="#chapter-08"><span>08</span>模型训练</a></li><li><a href="#chapter-09"><span>09</span>模型资源</a></li><li><a href="#chapter-10"><span>10</span>批量推理与输出</a></li><li><a href="#chapter-11"><span>11</span>DEM 与多尺度窗口</a></li><li><a href="#chapter-12"><span>12</span>任务中心与诊断</a></li><li><a href="#chapter-13"><span>13</span>设置、资源与更新</a></li><li><a href="#chapter-14"><span>14</span>备份与迁移</a></li><li><a href="#chapter-15"><span>15</span>常见问题</a></li></ol><div class="reader-home"><a href="../index.html">← 返回 POF 网站</a></div></details><article class="reader-main">
 <div class="manual-header"><img class="pof-logo" src="manual-images/pof-logo-black-header.png" alt="POF Workbench logo"><div class="lab-line">POF Workbench<br>南方科技大学行星与人工智能实验室</div><img class="sustech-logo" src="manual-images/sustech-logo-header.png" alt="南方科技大学"></div>
 
 <h1>POF Workbench 使用手册</h1>
@@ -57,7 +9,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>POF Workbench 由南方科技大学行星与人工智能实验室开发，用于遥感影像的人工标注、主动学习、模型训练和批量推理。手册面向科研人员和数据处理人员，按实际工作顺序说明软件界面、数据组织、模型流程和结果检查方法。</p>
 <div class="page-break"></div>
 
-<p><a id="contents"></a></p>
+<div class="print-contents"><p><a id="contents"></a></p>
 <h2>目录</h2>
 <ol>
 <li><a href="#chapter-01">软件概述与工作流程</a></li>
@@ -75,12 +27,11 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <li><a href="#chapter-13">设置：外观、更新、存储与可选资源</a></li>
 <li><a href="#chapter-14">保存、备份与迁移</a></li>
 <li><a href="#chapter-15">常见问题与处理方法</a></li>
-</ol>
+</ol></div>
 <p>目录按模块组织。每章既可以顺序阅读，也可以按当前操作单独查阅。</p>
 <div class="page-break"></div>
 
-<p><a id="chapter-01"></a></p>
-<h2>1. 软件概述与工作流程</h2>
+<h2 id="chapter-01">1. 软件概述与工作流程</h2>
 <p>POF Workbench 以项目组织研究工作，以任务隔离不同目标的数据、标签和模型。独立标注可在不创建项目的情况下运行；训练、主动学习和推理在具体任务中衔接。</p>
 <h3>1.1 术语说明</h3>
 <table>
@@ -178,8 +129,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
                        └─ 无标签：推荐区域 → 人工标注 → 训练 → 再推荐
 </code></pre>
 <p>不需要一次做完全部流程。你可以先画标签，之后再导入训练；也可以先推理，再打开生成的 PNG mask 进行人工修正。</p>
-<p><a id="chapter-02"></a></p>
-<h2>2. 安装、启动与首次配置</h2>
+<h2 id="chapter-02">2. 安装、启动与首次配置</h2>
 <h3>2.1 安装版与便携版</h3>
 <p><strong>安装版：</strong>运行安装程序，选择语言和安装位置，按页面提示完成。建议安装路径简短，例如 <code>D:\Apps\POF</code>。</p>
 <p><strong>便携版：</strong>将 ZIP 完整解压到一个文件夹，再启动里面的 <code>POF Workbench.exe</code>。不要只把 EXE 拖到桌面运行，也不要在压缩包中直接双击。程序旁的工作进程和 <code>_internal</code> 等文件需要一起保留。</p>
@@ -240,8 +190,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>按钮变灰时先看旁边的原因提示：常见原因是没有进入任务、数据尚未检查、没有模型、正在保存或已有任务运行。</p>
 <figure><img src="manual-images/00-workbench.png" alt="工作台与任务入口"><figcaption>图 1 项目与工作台。界面截图使用示例数据。</figcaption></figure>
 
-<p><a id="chapter-03"></a></p>
-<h2>3. 项目与任务：创建、进入、切换和退出</h2>
+<h2 id="chapter-03">3. 项目与任务：创建、进入、切换和退出</h2>
 <h3>3.1 创建项目</h3>
 <ol>
 <li>在工作台点击“新建项目／New project”。</li>
@@ -273,8 +222,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>添加影像目录一般是登记原位置，并非把整个目录复制进项目。删除项目内的路径引用，也不等于删除原图；后续移动原始目录会影响再次读取。</p>
 <figure><img src="manual-images/01-project.png" alt="项目任务关系"><figcaption>图 2 项目与任务入口。界面截图使用示例数据。</figcaption></figure>
 
-<p><a id="chapter-04"></a></p>
-<h2>4. 项目与数据：导入、配对和标签规范化</h2>
+<h2 id="chapter-04">4. 项目与数据：导入、配对和标签规范化</h2>
 <h3>4.1 数据类别与导入位置</h3>
 <table>
 <thead>
@@ -348,8 +296,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>规范化会兼容常见的 0/1、0/255、灰度边缘、调色板和单色 RGB/RGBA mask。它不是把所有有颜色的图都变成正确标签：多类别标签需要明确目标类别，彩色截图和红绿轮廓预览不能直接当成 mask。</p>
 <figure><img src="manual-images/07-data-check.png" alt="数据配对检查"><figcaption>图 3 数据导入、配对检查及结果提示。界面截图使用示例数据。</figcaption></figure>
 
-<p><a id="chapter-05"></a></p>
-<h2>5. 独立标注：读入与保存 mask、SHP</h2>
+<h2 id="chapter-05">5. 独立标注：读入与保存 mask、SHP</h2>
 <h3>5.1 功能入口</h3>
 <p>在工作台点击“独立标注／开始标注”，或从“标签 → 分割”进入。这个入口不要求创建项目，也不要求模型。</p>
 <h3>5.2 创建与保存标签</h3>
@@ -426,8 +373,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 </blockquote>
 <figure><img src="manual-images/10-annotation.png" alt="独立标注画布"><figcaption>图 4 文件监看与标注保存。界面截图使用示例数据。</figcaption></figure>
 
-<p><a id="chapter-06"></a></p>
-<h2>6. 标注工具：绘制、修改、擦除与快捷键</h2>
+<h2 id="chapter-06">6. 标注工具：绘制、修改、擦除与快捷键</h2>
 <h3>6.1 工具功能与适用场景</h3>
 <table>
 <thead>
@@ -589,8 +535,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>如果只看见框内小图，检查“图层与工具”中的原图上下文显示。若原始文件本身就是切片，软件无法显示切片之外不存在的原图。</p>
 <figure><img src="manual-images/10-annotation.png" alt="标注工具与目标区域"><figcaption>图 5 标注画布与绿色目标标签。主动学习沿用相同工具，另设审核范围。界面截图使用示例数据。</figcaption></figure>
 
-<p><a id="chapter-07"></a></p>
-<h2>7. 主动分割：从少量标注逐轮改进</h2>
+<h2 id="chapter-07">7. 主动分割：从少量标注逐轮改进</h2>
 <h3>7.1 启动条件</h3>
 <p>开始新的主动学习需要：已进入具体任务、设置了一个可用的待标注影像目录、扫描发现可用影像，以及可用的训练起点或兼容任务模型。</p>
 <p>当前新轮次入口要求一个待标注目录。多处影像可先整理到同一个上级目录的子文件夹中。没有待标注数据时，不应从已标注训练目录自动假装生成新的未标注池。</p>
@@ -697,8 +642,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>查看轮次记录中的评估与采用结果。重点看漏检和误检是否改善，而不是只看训练 Loss 是否下降。测试集用于最终检查，不应反复根据测试结果修改标签和参数后再宣称是独立测试。</p>
 <figure><img src="manual-images/02-active.png" alt="主动学习页面"><figcaption>图 6 主动学习首轮入口、起始模型及待标注影像状态。界面截图使用示例数据。</figcaption></figure>
 
-<p><a id="chapter-08"></a></p>
-<h2>8. 模型训练：启动、观察、停止和恢复结果</h2>
+<h2 id="chapter-08">8. 模型训练：启动、观察、停止和恢复结果</h2>
 <h3>8.1 启动训练</h3>
 <ol>
 <li>进入任务，在项目与数据中选择原图和标签。</li>
@@ -813,8 +757,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>突然出现全部指标 1.0000，不应直接理解为模型完美。先看真值和预测是否都为空、验证范围是否合理、标签读取是否正确。</p>
 <figure><img src="manual-images/03-training.png" alt="模型训练"><figcaption>图 7 模型训练、指标与双图样例。曲线、数值和地形为界面演示内容，不代表实际模型的验证表现。</figcaption></figure>
 
-<p><a id="chapter-09"></a></p>
-<h2>9. 模型资源：选择、导入、导出与删除</h2>
+<h2 id="chapter-09">9. 模型资源：选择、导入、导出与删除</h2>
 <h3>9.1 POFBase 与任务模型</h3>
 <p><strong>POFBase：</strong>内置的训练初始化模型，适合开始新目标训练。没有本目标标签训练时，不应把它当作可直接交付的专用分割模型。</p>
 <p><strong>完整任务模型：</strong>已经针对目标完成下游训练的模型。兼容时可用于预测、继续训练或启动主动学习。选中后页面只显示它支持的操作。</p>
@@ -837,8 +780,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>模型删除不等于删除原始训练标签。重要模型先导出备份，再进行清理；不要把存储页的“清理缓存”理解为清理所有模型。</p>
 <figure><img src="manual-images/04-models.png" alt="模型资源"><figcaption>图 8 模型资源及内置 POFBase 信息。任务模型完成训练后，可在此查看已保存的评估指标。</figcaption></figure>
 
-<p><a id="chapter-10"></a></p>
-<h2>10. 分割推理：批量处理、输出和重试</h2>
+<h2 id="chapter-10">10. 分割推理：批量处理、输出和重试</h2>
 <h3>10.1 推理配置与批量执行</h3>
 <ol>
 <li>进入具体任务，打开“推理／Inference”。</li>
@@ -890,8 +832,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>互不相关的普通照片、混合投影或没有可靠空间参考的影像，不应随意打开该选项。普通批量预测先保持关闭。</p>
 <figure><img src="manual-images/05-predict.png" alt="分割推理"><figcaption>图 9 推理工作区及影像预览。截图为待执行的示例队列，不表示已生成推理结果。</figcaption></figure>
 
-<p><a id="chapter-11"></a></p>
-<h2>11. DEM、相对地形和多尺度窗口</h2>
+<h2 id="chapter-11">11. DEM、相对地形和多尺度窗口</h2>
 <h3>11.1 无 DEM 条件下的运行方式</h3>
 <p>可以。POF 有可选 DEM 输入，也有无有效 DEM 时的单目相对地形路径。独立标注本身更不要求 DEM。</p>
 <p>训练和推理页面都有添加 DEM 的入口。当前输入框有路径时才使用该文件；留空表示不使用，也不自动继承旧模型或配置中的 DEM 路径。</p>
@@ -908,8 +849,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>例如：网络输入为 384 × 384，但观察范围可能是原图的 768 × 768 或更大。大观察框看整体，小观察框看细节。多尺度推理会综合不同观察范围的预测。</p>
 <p>不要把常见的 384／768／1536 当成所有任务固定不变的要求。当前流程会利用数据尺度和验证结果选择、保存推理窗口及权重；预测时优先采用模型自带的设置。</p>
 <p>高级设置中的视野上限和目标尺寸筛选也不同：前者影响模型看多大范围，后者筛掉输出中不符合尺寸的对象。更大窗口并不等于更大网络输入，也不一定更准。</p>
-<p><a id="chapter-12"></a></p>
-<h2>12. 任务中心：进度、记录与失败诊断</h2>
+<h2 id="chapter-12">12. 任务中心：进度、记录与失败诊断</h2>
 <h3>12.1 项目任务与运行记录</h3>
 <p>项目下的任务是“识别什么”，例如方山。任务中心中的一条运行记录是“做过什么”，例如方山模型的一次训练或一批影像的推理。</p>
 <p>同一个识别任务会有多条训练、推理和主动学习运行记录。</p>
@@ -969,8 +909,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>诊断可能包含本机路径和任务信息。发给他人之前检查是否有不适合共享的项目名称或目录信息。</p>
 <figure><img src="manual-images/08-task-center.png" alt="任务中心"><figcaption>图 10 任务中心与运行记录入口。界面截图使用示例数据。</figcaption></figure>
 
-<p><a id="chapter-13"></a></p>
-<h2>13. 设置：外观、更新、存储与可选资源</h2>
+<h2 id="chapter-13">13. 设置：外观、更新、存储与可选资源</h2>
 <h3>13.1 语言与界面</h3>
 <p>可选择中文或英文、默认设备、默认项目位置、标注默认输出格式，以及减少动效和保存后确认提示。常规配置修改后点击“应用设置”；顶部语言切换会立即生效并记住选择。</p>
 <p>外观提供以下三种模式，在“设置 → 语言与界面 → 外观”中选择：</p>
@@ -1071,8 +1010,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <p>需要自行安排升级时，可关闭“自动下载更新，退出后安装”，再手动检查、下载和重启更新。受限网络环境下，也可从发布仓库获取完整安装包手动升级。便携目录应放在可写位置；若被权限或文件占用阻止，正常退出后使用手动安装包更新。</p>
 <figure><img src="manual-images/13-updates.png" alt="软件更新设置"><figcaption>图 13 软件更新入口、自动更新选项与当前版本信息。可用新版本以发布仓库的实际状态为准。</figcaption></figure>
 
-<p><a id="chapter-14"></a></p>
-<h2>14. 保存、备份与迁移</h2>
+<h2 id="chapter-14">14. 保存、备份与迁移</h2>
 <h3>14.1 保存内容与文件类型</h3>
 <table>
 <thead>
@@ -1132,8 +1070,7 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <h3>14.4 网络盘和长路径</h3>
 <p>网络目录可以使用，但断连会影响读图、保存和训练收尾。长时间任务建议确保连接稳定；条件允许时，把运行输出放在本地短路径，例如 <code>D:\POF-Projects</code>。</p>
 <p>软件已对部分内部路径做缩短处理，但不能保证所有外部软件和网络环境都支持任意长路径。避免多层重复目录名和特别长的训练名称。</p>
-<p><a id="chapter-15"></a></p>
-<h2>15. 常见问题与处理方法</h2>
+<h2 id="chapter-15">15. 常见问题与处理方法</h2>
 <h3>Q1：没有待标注影像，为什么不能开始主动学习？</h3>
 <p>主动学习需要从未完成标签的影像中推荐区域。到项目与数据中指定待标注目录并完成扫描。已有训练标签可以用于初始化训练，但不能自动等同于未标注池。</p>
 <h3>Q2：没有自己的模型，能不能开始？</h3>
@@ -1168,4 +1105,5 @@ figcaption { color:#666; font-size:9pt; line-height:1.55; margin-top:8px; }
 <h3>Q16：显存不足、共享内存或系统内存报错？</h3>
 <p>先减小 Batch，关闭其他占用较大的程序，检查磁盘剩余空间与 Windows 虚拟内存。共享内存映射错误不一定来自显卡显存不足；反馈时保留完整日志与错误信息。</p>
 <h3>Q17：安装完成后启动报错？</h3>
-<p>确认使用最新完整安装包并保留安装日志。尝试从安装目录直接启动，区分安装器启动步骤与软件本身的问题。反馈系统版本、安装位置和报错原文。</p></body></html>
+<p>确认使用最新完整安装包并保留安装日志。尝试从安装目录直接启动，区分安装器启动步骤与软件本身的问题。反馈系统版本、安装位置和报错原文。</p>
+<footer class="reader-end"><span>POF Workbench · PAI / SUSTech</span><a href="POF-Workbench-Manual-ZH.pdf" download>下载 PDF ↓</a></footer></article></div></body></html>

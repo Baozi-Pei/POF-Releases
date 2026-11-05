@@ -30,3 +30,7 @@ The supplied skill refers to a design-search database that is absent from its in
 ## User-directed visual revision
 
 The initial dark crescent / abstract slogan was rejected. The current opening instead uses Curiosity's October 2026 Martian Dawn publication as a full-frame background. A large POF wordmark sits behind a foreground ridge extracted as a code-native SVG clip path; the Workbench name, functional description and download actions stay legible in front. Headlines now state annotation, training, segmentation and active learning directly. Warm chalk, graphite and restrained mission-orange replace the initial pure-black / cold-white emphasis. The Psyche south-pole photograph remains a separate scientific imagery chapter.
+
+## November 6 content update
+
+Replace all five product views with developer-supplied dark interface screenshots from Desktop/网站素材. Preserve the approved Curiosity hero. Replace the unrelated standalone Psyche section with a concise, source-code/README-grounded introduction to POF: semantic context, local detail and optional terrain inputs. Promote the illustrated manual in the header, hero and download section. Place a small monochrome university seal and a light PAI byline below the hero actions. The PAI English expansion is a provisional translation requested by the developer, not a verified institutional title.

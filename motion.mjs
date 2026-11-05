@@ -14,7 +14,6 @@ export function installMotion() {
  const wordmark = document.querySelector('.hero-monogram');
  const landscape = document.querySelector('.hero-image img');
  const foreground = document.querySelector('.hero-foreground');
- const planet = document.querySelector('.landscape-photo img');
  const workflow = document.querySelector('#workflow');
  const steps = [...document.querySelectorAll('.workflow-steps li')];
  const progress = document.createElement('div');
@@ -26,7 +25,7 @@ export function installMotion() {
   const y = scrollY;
   progress.style.transform = `scaleX(${readingProgress(y, root.scrollHeight, innerHeight)})`;
   if (media.matches) {
-   for (const el of [wordmark, landscape, foreground, planet]) el?.style.removeProperty('transform');
+   for (const el of [wordmark, landscape, foreground]) el?.style.removeProperty('transform');
    return;
   }
   const scene = sceneMotion(y, hero.offsetHeight, innerWidth < 768);
@@ -37,11 +36,7 @@ export function installMotion() {
   const rect = workflow.getBoundingClientRect();
   const t = Math.min(.999, unit((innerHeight * .7 - rect.top) / Math.max(1, rect.height * .7)));
   steps.forEach((step, i) => step.classList.toggle('is-current', i === Math.floor(t * steps.length)));
-  const planetRect = document.querySelector('#imagery').getBoundingClientRect();
-  if (planetRect.top < innerHeight && planetRect.bottom > 0) {
-   const t = unit((innerHeight - planetRect.top) / (innerHeight + planetRect.height));
-   planet.style.transform = `translate3d(0,${(t - .5) * 46}px,0) scale(1.03)`;
-  }
+
  }
  function schedule() { if (!pending) { pending = true; requestAnimationFrame(paint); } }
  root.classList.toggle('cinematic-motion', !media.matches);

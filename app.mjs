@@ -11,7 +11,7 @@ const zh = {
  cap1Title:'面向行星影像',cap1:'大幅 TIFF、原图上下文和可修改的标签。',cap2Title:'地形信息，按需加入',cap2:'可选 DEM，让地形参与处理流程。',cap3Title:'数据保留在本机',cap3:'在自己的电脑上工作，保留项目文件。',
  workflowEyebrow:'02 / 主动学习',workflowTitle:'主动学习。<br>人工审核，逐轮训练。',workflowDescription:'从少量标注或已有模型开始。审核推荐区域、修正标签，再进入下一轮训练。',step1Title:'确定研究目标',step1:'导入影像，在项目下建立任务。',step2Title:'审核、修正，再继续',step2:'在同一画布上完善模型建议的标签。',step3Title:'让模型进入下一轮',step3:'使用已审核标签训练，并对比验证结果。',readManual:'阅读使用手册',loopLabel:'人工审核 / 模型学习',visualCaption:'审核推荐区域，修正目标标签。',exampleLabel:'流程示意 · 轮廓仅为示意',
  imageryEyebrow:'03 / 来自火星的视野',imageryTitle:'从轨道，观测火星。',imageryDescription:'Psyche 飞掠火星后拍摄的南极视野。<br>影像来自 NASA 任务，保留拍摄日期与原始来源。',dawnDate:'火星南极 · PSYCHE 拍摄于 2026 年 5 月 15 日',
- downloadEyebrow:'04 / 下载软件',downloadDescription:'面向 Windows 的行星影像标注与分割软件。',releaseLabel:'最新正式发布',downloadPanelTitle:'获取最新发布版本。',releaseChecking:'正在检查最新发布版本…',viewReleases:'查看发布下载',allReleases:'所有版本与便携包',runtimeLabel:'基础运行环境',runtimeValue:'已包含，无需配置 Python。',gpuLabel:'GPU 加速',gpuValue:'在设置中按需下载。',updatesLabel:'软件更新',updatesValue:'通过 GitHub Releases 发布。',downloadManual:'下载图文使用手册',
+   downloadEyebrow:'04 / 下载软件',downloadDescription:'面向 Windows 的行星影像标注与分割软件。',releaseLabel:'最新正式发布',downloadPanelTitle:'获取最新发布版本。',releaseChecking:'正在检查最新发布版本…',viewReleases:'查看发布下载',allReleases:'所有版本与便携包',runtimeLabel:'基础运行环境',runtimeValue:'已包含，无需配置 Python。',gpuLabel:'GPU 加速',gpuValue:'在设置中按需下载。',updatesLabel:'软件更新',updatesValue:'通过 GitHub Releases 发布。',downloadManual:'下载 PDF 使用手册',
  releaseMissing:'安装包尚未在 GitHub Releases 正式发布。你可以先浏览工作台和使用手册；发布后这里会自动提供最新版下载。',releaseError:'暂时无法连接 GitHub。请打开发布页查看下载文件，或稍后重试。',releaseReady:'最新正式版已就绪。选择安装包，或下载便携版。',downloadInstaller:'下载 Windows 安装包',downloadPortable:'下载便携版',
  faqEyebrow:'使用前了解',faqTitle:'几个常见问题。',faq1Q:'必须有 GPU 吗？',faq1A:'基础包可以使用 CPU。进行训练和推理时，兼容的 NVIDIA GPU 可以提升速度。GPU 运行库可在设置中下载和配置。',faq2Q:'可以使用已有标签吗？',faq2A:'可以打开 PNG mask 或 Shapefile 标签进行修改。在设置中选择保存格式，默认输出 PNG mask。',faq3Q:'必须提供 DEM 吗？',faq3A:'DEM 是可选的。未提供有效 DEM 时，支持的 POF 模型可以从影像估计相对地形。这种估计不等于真实测量高程。',faq4Q:'POF 与 NASA 有合作关系吗？',faq4A:'POF Workbench 由南方科技大学行星与人工智能实验室开发。NASA 影像均标注任务与来源，影像使用不代表 NASA 对本软件的认可或背书。',lab:'南方科技大学行星与人工智能实验室 开发',manual:'使用手册',credits:'影像来源',footerNote:'行星影像标注与分割。',screenshotTitle:'POF Workbench · 界面预览',screenshotNote:'训练截图中的指标与地形为演示数据。'
 };
@@ -20,6 +20,24 @@ Object.assign(english, {
  trainTitle:'Watch your model take shape.',trainDescription:'Follow training curves, validation metrics, terrain estimates and predicted contours. Keep separate data and models for each task.',trainNote:'Training metrics and terrain in this screenshot are demonstration data, not measured performance.',
  predictTitle:'From one image to a whole collection.',predictDescription:'Run batch segmentation with a trained model. Follow the file queue, processing stages and error details, and organize the outputs your way.',predictNote:'PNG masks · Vector outputs · Configurable output organization',
  releaseMissing:'The installer has not been published on GitHub Releases yet. Explore the workbench and manual for now; the latest download will appear here when a release is published.',releaseError:'GitHub could not be reached right now. Open the release page to check downloads, or try again later.',releaseReady:'The latest stable release is ready. Choose the installer or the portable package.',downloadInstaller:'Download Windows installer',downloadPortable:'Download portable edition'
+});
+Object.assign(zh, {
+ navAbout:'关于 POF',navManual:'使用手册',paiName:'行星与人工智能实验室 · PAI',university:'南方科技大学',tabProject:'项目',tabActive:'主动学习',
+ projectTitle:'按项目组织，按任务工作。',projectDescription:'一个项目下管理多个识别任务，各自保存影像、标签、模型与轮次记录。',projectNote:'项目与任务 · 独立数据与模型',
+ activeTitle:'从已有模型继续。',activeDescription:'选择模型，推荐待审核区域，修正标签，再使用已完成的标注继续训练。也可以从少量人工标注开始。',activeNote:'模型选择 · 区域审核 · 逐轮训练',
+ trainNote:'界面中的指标对应截图里的具体训练，不代表所有数据上的模型精度。',exampleLabel:'实际软件界面 · 指标仅对应图示训练',screenshotNote:'截图来自实际使用；效果与训练数据、任务和影像分辨率有关。',
+ aboutEyebrow:'03 / POF 框架',aboutTitle:'地形辅助。<br>像素级分割。',aboutDescription:'POF 是面向行星遥感影像的地形辅助分割框架。它融合语义上下文、局部纹理细节与地形线索，逐像素识别特定地貌目标。',aboutWorkbench:'POF Workbench 将这一框架放入完整的桌面流程：准备标签、训练任务模型、审核推荐区域，并导出分割结果。',aboutGuide:'在使用手册中了解完整流程',
+ semanticTitle:'语义上下文',semanticDescription:'DINOv3 特征描述更大范围的形态与上下文。',detailTitle:'局部细节',detailDescription:'CNN 分支保留纹理、边缘和小尺度特征。',terrainTitle:'地形线索',terrainDescription:'可选 DEM；缺少有效 DEM 时，从影像估计相对地形。',outputTitle:'目标分割',outputDescription:'像素掩膜、目标边界与可选 GIS 矢量。',terrainNote:'估计的相对地形不是测量高程产品。分割效果取决于任务、训练数据和影像分辨率。',
+ manualFeatureTitle:'图文使用手册',manualFeatureDescription:'从安装、标注，到训练与推理，按模块查看操作说明。',lab:'南方科技大学 · 行星与人工智能实验室 PAI 开发',
+ faq4A:'POF Workbench 由南方科技大学行星与人工智能实验室（PAI）开发。首页 NASA 影像仅作为视觉背景，使用影像不代表 NASA 对本软件的认可或背书。'
+});
+Object.assign(english, {
+ navAbout:'About POF',navManual:'User manual',paiName:'Planetary and Artificial Intelligence Laboratory · PAI',university:'Southern University of Science and Technology',tabProject:'Projects',tabActive:'Active learning',
+ projectTitle:'One project. Distinct tasks.',projectDescription:'Organize multiple research targets within a project, keeping each task’s images, labels, models and training rounds separate.',projectNote:'Projects and tasks · Separate data and models',
+ activeTitle:'Continue from an existing model.',activeDescription:'Select a model, recommend regions, review labels and train with completed annotations. Or begin with a small set of manual labels.',activeNote:'Model selection · Region review · Iterative training',
+ trainNote:'Metrics shown belong to the pictured training run and are not a general accuracy claim.',exampleLabel:'Actual interface · metrics belong to the displayed run',screenshotNote:'Actual interface screenshots; results depend on training data, task and image resolution.',
+ lab:'Developed by PAI · Southern University of Science and Technology',
+ faq4A:'POF Workbench is developed by the Planetary and Artificial Intelligence Laboratory (PAI) at Southern University of Science and Technology. NASA imagery is credited visual context; its use does not imply NASA endorsement.'
 });
 let language = 'en';
 try { if (localStorage.getItem('pof-site-language') === 'zh') language = 'zh'; } catch {}
@@ -33,14 +51,18 @@ function translate() {
  document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = text(el.dataset.i18n); });
  byId('language').textContent = language === 'zh' ? 'EN' : '中文';
  byId('language').setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换为中文');
- document.title = language === 'zh' ? 'POF Workbench — 行星影像工作台' : 'POF Workbench — Planetary image annotation and segmentation';
+ document.querySelectorAll('[data-manual-link]').forEach(a => a.href = language === 'zh' ? 'manual/index.html' : 'manual/en.html');
+  document.querySelectorAll('[data-manual-download]').forEach(a => a.href = `manual/POF-Workbench-Manual-${language.toUpperCase()}.pdf`);
+  document.title = language === 'zh' ? 'POF Workbench — 行星影像工作台' : 'POF Workbench — Planetary image annotation and segmentation';
  renderView(false); renderRelease();
 }
 byId('language').addEventListener('click', () => { language = language === 'en' ? 'zh' : 'en'; try { localStorage.setItem('pof-site-language', language); } catch {} translate(); });
 const views = {
+ project:{src:'assets/projects.webp',alt:'POF project and task overview in dark appearance',number:'02'},
+ active:{src:'assets/active-learning.webp',alt:'POF active learning workspace with a selectable trained model',number:'03'},
  annotate: { src:'assets/annotation.webp', alt:'POF annotation canvas and floating editing tools', number:'01' },
- train: { src:'assets/training.webp', alt:'POF training view with demonstration validation curves and terrain estimates', number:'02' },
- predict: { src:'assets/predict.webp', alt:'POF batch inference workspace and file queue', number:'03' }
+ train: { src:'assets/training.webp', alt:'POF training view with demonstration validation curves and terrain estimates', number:'04' },
+ predict: { src:'assets/predict.webp', alt:'POF batch inference workspace and file queue', number:'05' }
 };
 let imageRequest = 0;
 function renderView(changeImage = true) {
@@ -65,7 +87,7 @@ function renderView(changeImage = true) {
  byId('view-title').textContent = text(`${selectedView}Title`);
  byId('view-description').textContent = text(`${selectedView}Description`);
  byId('view-note').textContent = text(`${selectedView}Note`);
- byId('stage-count').textContent = `${view.number} — 03`;
+ byId('stage-count').textContent = `${view.number} — 05`;
 }
 const tabButtons = [...document.querySelectorAll('[data-view]')];
 tabButtons.forEach(button => {
@@ -82,6 +104,7 @@ tabButtons.forEach(button => {
 });
 const dialog = byId('image-dialog');
 byId('product-enlarge').addEventListener('click', () => { byId('dialog-image').src = views[selectedView].src; byId('dialog-image').alt = views[selectedView].alt; dialog.showModal(); });
+document.querySelectorAll('[data-preview]').forEach(button => button.addEventListener('click',()=>{ byId('dialog-image').src=button.dataset.preview; byId('dialog-image').alt=button.querySelector('img').alt; dialog.showModal(); }));
 byId('close-dialog').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
 

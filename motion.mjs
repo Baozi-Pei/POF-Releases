@@ -1,7 +1,7 @@
 const unit = value => Number.isFinite(value) ? Math.min(1, Math.max(0, value)) : 0;
 export function sceneMotion(scroll, height, narrow = false) {
  const progress = unit(scroll / Math.max(1, height));
- return { landscape: progress * (narrow ? 12 : 38), wordmark: progress * (narrow ? 48 : 160) };
+ return { landscape: progress * (narrow ? 22 : 58), wordmark: progress * (narrow ? 76 : 230) };
 }
 export function readingProgress(scroll, height, viewport) {
  return height > viewport ? unit(scroll / (height - viewport)) : 0;
@@ -38,7 +38,7 @@ export function installMotion() {
   // so the page could appear to jump straight to step 03.
   // Place the reading anchor below the heading. This gives the first row a
   // visible dwell period instead of activating it only as it exits the top.
-  const anchor = innerHeight * .45;
+  const anchor = innerHeight * .6;
   let current = 0;
   steps.forEach((step, i) => {
    const rect = step.getBoundingClientRect();

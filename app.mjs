@@ -3,7 +3,7 @@ import { selectRelease } from './release.mjs';
 
 const zh = {
  skip:'跳到正文',navProduct:'工作台',navWorkflow:'工作流程',navImagery:'火星影像',navDownload:'下载',
- heroEyebrow:'行星影像分析',heroTitle1:'POF',heroTitle2:'Workbench.',heroDescription:'行星影像标注、模型训练与批量分割。<br>在同一个工作台中，完成从标签到分割结果的处理。',heroCta:'获取 Windows 版',explore:'探索工作台',
+ heroEyebrow:'行星影像分析',pofDefinition:'行星观测基础模型 · POF',heroTitle1:'POF',heroTitle2:'Workbench.',heroDescription:'行星影像标注、模型训练与批量分割。<br>在同一个工作台中，完成从标签到分割结果的处理。',heroCta:'获取 Windows 版',explore:'探索工作台',
  productEyebrow:'01 / 工作台',productTitle:'影像标注。模型训练。<br>批量分割。',productIntro:'标注地貌，训练模型，处理下一幅影像。让影像、标签和模型在同一个桌面工作台中衔接。',
  tabAnnotate:'标注',tabTrain:'训练',tabPredict:'推理',annotateTitle:'完整画布，精细标注。',annotateDescription:'大画布配合多边形、画笔、橡皮和套索。打开已有 mask 或 Shapefile 标签，继续修改和完善。',annotateNote:'TIFF 与常见图像 · PNG mask 与 SHP',
  trainTitle:'模型的变化，看得见。',trainDescription:'查看训练曲线、验证指标、地形估计和预测轮廓。为不同任务分别保存数据与模型。',trainNote:'截图中的训练指标与地形为演示内容，不代表实际精度。',
@@ -26,17 +26,17 @@ Object.assign(zh, {
  projectTitle:'按项目组织，按任务工作。',projectDescription:'一个项目下管理多个识别任务，各自保存影像、标签、模型与轮次记录。',projectNote:'项目与任务 · 独立数据与模型',
  activeTitle:'从已有模型继续。',activeDescription:'选择模型，推荐待审核区域，修正标签，再使用已完成的标注继续训练。也可以从少量人工标注开始。',activeNote:'模型选择 · 区域审核 · 逐轮训练',
  trainNote:'界面中的指标对应截图里的具体训练，不代表所有数据上的模型精度。',exampleLabel:'实际软件界面 · 指标仅对应图示训练',screenshotNote:'截图来自实际使用；效果与训练数据、任务和影像分辨率有关。',
- aboutEyebrow:'03 / POF 框架',aboutTitle:'地形辅助。<br>像素级分割。',aboutDescription:'POF 是面向行星遥感影像的地形辅助分割框架。它融合语义上下文、局部纹理细节与地形线索，逐像素识别特定地貌目标。',aboutWorkbench:'POF Workbench 将这一框架放入完整的桌面流程：准备标签、训练任务模型、审核推荐区域，并导出分割结果。',aboutGuide:'在使用手册中了解完整流程',
+ aboutEyebrow:'03 / POF 框架',aboutTitle:'地形辅助。<br>像素级分割。',aboutDescription:'POF 是面向行星遥感影像的地形辅助分割框架。它融合语义上下文、局部纹理细节与地形线索，逐像素识别特定地貌目标。',aboutWorkbench:'POF Workbench 将这一框架放入完整的桌面流程：准备标签、训练任务模型、审核推荐区域，并导出分割结果。',pofFuture:'POF 将继续扩展到识别与更多行星影像任务。',aboutGuide:'在使用手册中了解完整流程',
  semanticTitle:'语义上下文',semanticDescription:'DINOv3 特征描述更大范围的形态与上下文。',detailTitle:'局部细节',detailDescription:'CNN 分支保留纹理、边缘和小尺度特征。',terrainTitle:'地形线索',terrainDescription:'可选 DEM；缺少有效 DEM 时，从影像估计相对地形。',outputTitle:'目标分割',outputDescription:'像素掩膜、目标边界与可选 GIS 矢量。',terrainNote:'估计的相对地形不是测量高程产品。分割效果取决于任务、训练数据和影像分辨率。',
  manualFeatureTitle:'图文使用手册',manualFeatureDescription:'从安装、标注，到训练与推理，按模块查看操作说明。',lab:'南方科技大学 · 行星与人工智能实验室 PAI 开发',
  faq4A:'POF Workbench 由南方科技大学行星与人工智能实验室（PAI）开发。首页 NASA 影像仅作为视觉背景，使用影像不代表 NASA 对本软件的认可或背书。'
 });
 Object.assign(english, {
- navAbout:'About POF',navManual:'User manual',paiName:'Planetary and Artificial Intelligence Laboratory · PAI',university:'Southern University of Science and Technology',tabProject:'Projects',tabActive:'Active learning',
+ navAbout:'About POF',navManual:'User manual',pofDefinition:'Planetary Observation Foundation · POF',paiName:'Planetary and Artificial Intelligence Laboratory · PAI',university:'Southern University of Science and Technology',tabProject:'Projects',tabActive:'Active learning',
  projectTitle:'One project. Distinct tasks.',projectDescription:'Organize multiple research targets within a project, keeping each task’s images, labels, models and training rounds separate.',projectNote:'Projects and tasks · Separate data and models',
  activeTitle:'Continue from an existing model.',activeDescription:'Select a model, recommend regions, review labels and train with completed annotations. Or begin with a small set of manual labels.',activeNote:'Model selection · Region review · Iterative training',
  trainNote:'Metrics shown belong to the pictured training run and are not a general accuracy claim.',exampleLabel:'Actual interface · metrics belong to the displayed run',screenshotNote:'Actual interface screenshots; results depend on training data, task and image resolution.',
- lab:'Developed by PAI · Southern University of Science and Technology',
+ lab:'Developed by PAI · Southern University of Science and Technology',pofFuture:'POF is designed to grow toward recognition and additional planetary-image tasks.',
  faq4A:'POF Workbench is developed by the Planetary and Artificial Intelligence Laboratory (PAI) at Southern University of Science and Technology. NASA imagery is credited visual context; its use does not imply NASA endorsement.'
 });
 let language = 'en';

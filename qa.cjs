@@ -1,0 +1,42 @@
+const { chromium } = require(process.env.POF_PLAYWRIGHT_MODULE || 'playwright');
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+(async () => {
+ fs.mkdirSync('.qa', { recursive:true });
+ const browser = await chromium.launch({ ...(process.env.POF_BROWSER_PATH ? { executablePath:process.env.POF_BROWSER_PATH } : {}), headless:true });
+ const errors=[]; const report=[];
+ const context = await browser.newContext({ viewport:{width:1440,height:1000},deviceScaleFactor:1,reducedMotion:'reduce' });
+ const page = await context.newPage();
+ page.on('pageerror', e => errors.push(e.message));
+ await page.route('https://api.github.com/repos/Baozi-Pei/POF-Releases/releases/latest', route => route.fulfill({status:404,body:'{}',contentType:'application/json'}));
+ await page.goto('http://127.0.0.1:4173/', {waitUntil:'networkidle'});
+ await page.evaluate(async()=>{await Promise.all([...document.images].map(i=>{i.loading='eager';return i.decode().catch(()=>{});}));});
+ await page.screenshot({path:'.qa/desktop-hero.png'});
+ for (const width of [375,768,1100,1440,1920]) {
+  await page.setViewportSize({width,height:1000});
+  const size=await page.evaluate(()=>({w:innerWidth,sw:document.documentElement.scrollWidth,broken:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src)}));
+  assert.ok(size.sw<=size.w, `Horizontal overflow at ${width}: ${size.sw}`);assert.deepEqual(size.broken,[]);
+  report.push({width,overflow:false,brokenImages:0});
+ }
+ await page.setViewportSize({width:1440,height:1000});
+ await page.locator('#workbench').scrollIntoViewIfNeeded();await page.screenshot({path:'.qa/desktop-product.png'});
+ await page.getByRole('tab',{name:'Train',exact:true}).click();assert.ok((await page.locator('#product-image').getAttribute('src')).includes('training'));
+ await page.getByRole('tab',{name:'Train',exact:true}).press('ArrowRight');assert.equal(await page.getByRole('tab',{name:'Predict',exact:true}).getAttribute('aria-selected'),'true');
+ await page.locator('#product-enlarge').click();assert.equal(await page.locator('#image-dialog').evaluate(e=>e.open),true);await page.keyboard.press('Escape');assert.equal(await page.locator('#image-dialog').evaluate(e=>e.open),false);
+ await page.locator('#workflow').scrollIntoViewIfNeeded();await page.screenshot({path:'.qa/desktop-workflow.png'});
+ await page.locator('#imagery').scrollIntoViewIfNeeded();await page.screenshot({path:'.qa/desktop-imagery.png'});
+ await page.locator('#download').scrollIntoViewIfNeeded();assert.match(await page.locator('#release-status').innerText(),/not been published/);await page.screenshot({path:'.qa/desktop-download.png'});
+ await page.locator('#language').click();assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');await page.reload();assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');
+ await page.setViewportSize({width:375,height:812});await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});await page.screenshot({path:'.qa/mobile-hero.png'});
+ await page.locator('.menu-button').click();assert.equal(await page.locator('#mobile-nav').isVisible(),true);await page.locator('#mobile-nav a[href="#download"]').click();assert.equal(await page.locator('#mobile-nav').isVisible(),false);
+ await page.screenshot({path:'.qa/mobile-download.png'});
+ await page.goto('http://127.0.0.1:4173/manual/index.html',{waitUntil:'networkidle'});assert.ok((await page.title()).includes('POF'));assert.equal(await page.locator('img').evaluateAll(imgs=>imgs.filter(i=>!i.complete||!i.naturalWidth).length),0);
+ const releaseContext=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+ const releasePage=await releaseContext.newPage();
+ await releasePage.route('https://api.github.com/repos/Baozi-Pei/POF-Releases/releases/latest',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({tag_name:'v0.2.0',assets:[{name:'POF-Workbench-Setup.exe',size:432545985,browser_download_url:'https://github.com/Baozi-Pei/POF-Releases/releases/download/v0.2.0/POF-Workbench-Setup.exe'}]})}));
+ await releasePage.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});assert.match(await releasePage.locator('#installer-label').innerText(),/Download Windows installer/);assert.match(await releasePage.locator('#installer-download').getAttribute('href'),/v0.2.0/);
+ await releasePage.unrouteAll();await releasePage.route('https://api.github.com/**',route=>route.abort());await releasePage.reload({waitUntil:'networkidle'});assert.match(await releasePage.locator('#release-status').innerText(),/could not be reached/);
+ assert.deepEqual(errors,[]);
+ fs.writeFileSync('.qa/results.json',JSON.stringify({responsive:report,checks:['tabs','tab keyboard navigation','enlargement and Escape','language persistence','mobile navigation','unpublished release','published release','GitHub connection failure','manual image links'],pageErrors:errors},null,2));
+ await browser.close();console.log('PASS: responsive layout, images, interactions, release states, manual.');
+})().catch(e=>{console.error(e);process.exit(1)});

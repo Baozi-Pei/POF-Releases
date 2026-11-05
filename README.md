@@ -28,7 +28,9 @@ Create a stable GitHub Release and attach the signed/verified Windows installer 
 - `POF-Workbench-Setup.exe`
 - `POF-Workbench-Portable.zip`
 
-The website resolves the release's asset URLs automatically. Update metadata used by the desktop updater must still be supplied according to that application's release process; the website does not fabricate an update manifest.
+The website resolves the release's asset URLs automatically. The desktop updater requires the exact installer filename `POF-Workbench-Setup.exe`, a tag such as `v0.2.1`, a version newer than the installed application, and the SHA-256 digest supplied by GitHub for the fully uploaded asset. No separate update JSON manifest is currently required. If GitHub has not supplied the digest yet, the application postpones the update.
+
+See [the release guide](docs/releasing.md) for the complete publishing checklist and the difference between application releases and website/manual updates.
 
 ## Local preview and checks
 

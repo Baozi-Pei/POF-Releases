@@ -22,3 +22,21 @@ html[lang=zh-CN] h1{font-size:clamp(60px,7vw,106px);line-height:1.15;letter-spac
 @media(max-width:767px){.nav-download{display:none}.hero{height:94svh;min-height:800px;max-height:1000px}.hero-image img{width:100%;height:100%;inset:0;object-position:58% center}.hero-monogram{top:230px;left:18px;font-size:40vw;letter-spacing:-.1em}.hero-foreground{preserve-aspect-ratio:xMidYMid slice}.hero-content,html[lang=zh-CN] .hero-content{padding:0;bottom:120px;left:24px;right:24px}.hero h1,html[lang=zh-CN] h1{font-size:51px;line-height:1}.hero-content>.eyebrow{font-size:8px}.hero-description,html[lang=zh-CN] .hero-description{font-size:14px;max-width:340px;margin-top:18px}.hero-cta{flex-direction:row;flex-wrap:wrap;justify-content:flex-start;gap:8px 24px;margin-top:24px}.hero-cta .text-link{font-size:10px}.hero-cta .button{min-height:46px;height:46px;font-size:11px;padding-inline:18px;gap:20px}.hero-bottom{bottom:20px;padding-top:16px}.hero-coordinate{font-size:8px}.hero-coordinate span{font-size:7px}.hero-bottom .image-credit{font-size:7px;max-width:150px}.imagery-section{height:650px;min-height:0}.imagery-section .landscape-photo{left:0;top:0;bottom:150px}.imagery-section .landscape-photo img{object-position:center top}.landscape-content h2,html[lang=zh-CN] .landscape-content h2{font-size:38px}.landscape-content>.eyebrow{font-size:8px}.imagery-section:after{background:linear-gradient(0deg,#101110 0%,#0000 65%)}.download-intro h2{font-size:56px}}
 
 .hero-monogram{top:160px;font-weight:650;letter-spacing:-.055em}@media(max-width:1100px){.hero-monogram{top:190px}}@media(max-width:767px){.hero-monogram{top:250px;letter-spacing:-.06em}.hero-image img{object-position:center}}
+
+/* Motion adds depth without taking over native scrolling. */
+.reading-progress{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:left;pointer-events:none}
+.cinematic-motion .hero-monogram,.cinematic-motion .hero-image img,.cinematic-motion .hero-foreground{will-change:transform;transform-origin:50% 50%}
+.workflow-steps li{transition:opacity .4s,transform .4s;position:relative}
+.cinematic-motion .workflow-steps li{opacity:.5}
+.cinematic-motion .workflow-steps li.is-current{opacity:1;transform:translateX(8px)}
+.workflow-steps li:before{content:'';position:absolute;top:0;left:0;height:1px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .65s}
+.workflow-steps li.is-current:before{transform:scaleX(1)}
+.button .arrow,.nav-download>span:last-child{transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.button:hover .arrow,.nav-download:hover>span:last-child{transform:translate(3px,-3px)}
+.nav-download{transition:transform .2s,background .2s}.nav-download:hover{background:var(--orange-hover)}.nav-download:active{transform:scale(.97)}
+.view-tabs button:active{transform:scale(.95)}
+.screenshot-button[aria-busy=true]:before{content:'';position:absolute;left:0;top:0;height:2px;width:32%;background:var(--orange);z-index:2;animation:tab-loading .8s ease-in-out infinite}
+@keyframes tab-loading{from{translate:-100% 0}to{translate:340% 0}}
+.faq-grid details[open] p{animation:answer-enter .3s ease-out}
+@keyframes answer-enter{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.cinematic-motion .workflow-steps li{opacity:1;transform:none}.hero-monogram,.hero-image img,.hero-foreground,.landscape-photo img{transform:none!important}}

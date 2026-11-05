@@ -1,3 +1,4 @@
+import { installMotion } from './motion.mjs';
 import { selectRelease } from './release.mjs';
 
 const zh = {
@@ -41,9 +42,24 @@ const views = {
  train: { src:'assets/training.webp', alt:'POF training view with demonstration validation curves and terrain estimates', number:'02' },
  predict: { src:'assets/predict.webp', alt:'POF batch inference workspace and file queue', number:'03' }
 };
+let imageRequest = 0;
 function renderView(changeImage = true) {
  const view = views[selectedView];
- if (changeImage) { byId('product-image').src = view.src; byId('product-image').alt = view.alt; }
+ if (changeImage) {
+  const request = ++imageRequest;
+  const target = byId('product-image');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { target.src = view.src; target.alt = view.alt; }
+  else {
+   const preload = new Image(); preload.src = view.src;
+   byId('product-enlarge').setAttribute('aria-busy','true');
+   preload.decode().then(() => {
+    if (request !== imageRequest) return;
+    target.getAnimations().forEach(a=>a.cancel());
+    target.src = view.src; target.alt = view.alt;
+    target.animate([{opacity:.25,transform:'translateY(12px) scale(.99)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'});
+   }).catch(()=>{}).finally(()=>{if (request === imageRequest) byId('product-enlarge').removeAttribute('aria-busy');});
+  }
+ }
  document.querySelectorAll('[data-view]').forEach(button => { const active = button.dataset.view === selectedView; button.setAttribute('aria-selected', String(active)); button.tabIndex = active ? 0 : -1; });
  byId('product-panel').setAttribute('aria-labelledby', `tab-${selectedView}`);
  byId('view-title').textContent = text(`${selectedView}Title`);
@@ -103,3 +119,5 @@ async function loadRelease() {
  renderRelease();
 }
 loadRelease();
+
+installMotion();

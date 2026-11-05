@@ -21,11 +21,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test release.test.mjs
+      - run: node --test release.test.mjs motion.test.mjs
       - name: Stage public website only
         run: |
           mkdir _site
-          cp index.html credits.html styles.css app.mjs release.mjs _site/
+          cp index.html credits.html styles.css app.mjs release.mjs motion.mjs _site/
           cp -R assets manual _site/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5

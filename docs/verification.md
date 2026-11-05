@@ -23,3 +23,11 @@ GitHub Pages must use the GitHub Actions source. First-time enablement is a repo
 - [NASA Martian Dawn](https://www.nasa.gov/image-article/martian-dawn/) — publication October 19, 2026; acquisition August 11, 2026.
 - [NASA image/media guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/).
 - [GitHub Pages API](https://docs.github.com/en/rest/pages/pages#create-a-github-pages-site).
+
+## Motion verification — 2026-11-06
+
+- Seven unit tests cover release selection and bounded scene/reading progress geometry.
+- Added a ridge-occluded wordmark entrance, matched photo/foreground scroll depth, planet drift, a reading-progress line, highlighted workflow steps and decoded screenshot transitions.
+- Browser regression checks cover widths 375–1920px, keyboard navigation, saved language, manual images, release/network states and normal motion.
+- Motion-specific checks cover matched image/clip transforms, rapid tab changes and live reduced-motion changes.
+- Motion never intercepts scrolling, delays navigation or changes the imagery provenance. No animation dependency or video payload was added.

@@ -36,7 +36,7 @@ See [the release guide](docs/releasing.md) for the complete publishing checklist
 
 ```shell
 python -m http.server 4173
-node --test release.test.mjs
+node --test release.test.mjs motion.test.mjs
 ```
 
 Open `http://localhost:4173/`. A local HTTP server is required for browser ES modules.

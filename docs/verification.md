@@ -11,11 +11,23 @@
 - Desktop hero, product, workflow, imagery and download screenshots, plus mobile screenshots, were visually inspected. A narrow-screen Chinese headline wrap was corrected.
 - Reduced-motion behavior verified; normal scroll-reveal and entry animation receive a separate browser smoke check.
 
-## Deployment status
+## Deployment status — 2026-11-06
 
-The public repository is readable. An authenticated write connection is not currently available in this session. Website files and the Pages workflow are ready locally; no successful remote push or public Pages deployment is claimed.
+- Public website: https://baozi-pei.github.io/POF-Releases/
+- Illustrated manual: https://baozi-pei.github.io/POF-Releases/manual/index.html
+- Stable application release: https://github.com/Baozi-Pei/POF-Releases/releases/tag/v0.2.0
+- Pages is enabled with the GitHub Actions deployment source. The first workflow completed successfully.
+- Live browser checks passed for responsive widths 375–1920px, product tabs, screenshot dialog, saved language and every manual image. Public assets and the online/manual ZIP links returned HTTP 200.
+- The live download panel resolves v0.2.0 and its exact installer and portable asset URLs.
+- All three release binaries/archives were streamed in full from public unauthenticated download URLs and checked against local SHA-256 values:
 
-GitHub Pages must use the GitHub Actions source. First-time enablement is a repository setting; the normal `GITHUB_TOKEN` in the workflow does not grant repository-administration permission to turn Pages on by itself.
+| Asset | Bytes | SHA-256 |
+| --- | ---: | --- |
+| POF-Workbench-Setup.exe | 432545985 | 1a6a77e0b3ee43424a2c97a23e664de75d3b6adcb03b724b4c183105ce2de4e7 |
+| POF-Workbench-Portable.zip | 483687033 | c378a5a3091d2a49ac6099aac211b00d1f593caece4245e1554490632ff90e2e |
+| POF-Workbench-Manual.zip | 2049222 | e6baae4b22224c59c8e672a2f6b08044d2f6ad18f45cc9e89ba2d281d6c12f5b |
+
+The actual application updater parser accepts the live stable release for an older version (0.1.9), including its GitHub-provided digest, and returns no update for the current version (0.2.0). Installer execution, replacing an installed copy and exit-time handoff were not performed by this website/publication verification.
 
 ## Sources
 

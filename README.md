@@ -4,7 +4,7 @@ Public product website, installers, updates and release notes. This repository d
 
 ## Website
 
-The static site is designed for **https://Baozi-Pei.github.io/POF-Releases/**. This address becomes available after GitHub Pages is enabled and the first deployment completes.
+Visit **https://baozi-pei.github.io/POF-Releases/** for the product website and online manual. Download Windows packages from [the latest stable release](https://github.com/Baozi-Pei/POF-Releases/releases/latest).
 
 - Cinematic Mars imagery with original NASA credits and publication dates.
 - Actual POF interface previews for annotation, training and batch inference.

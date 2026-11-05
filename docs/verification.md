@@ -37,6 +37,10 @@ The actual application updater parser accepts the live stable release for an old
 - The website's language preference routes manual links and the download panel to the matching English or Chinese PDF.
 - The v0.2.0 manual package now contains both online readers, both PDFs and the illustrated manual assets; the application binaries were not changed.
 
+## Screenshot cleanup — 2026-11-06
+
+- Cropped the Windows title-bar strip from all five product screenshots used on the website, then rechecked their aspect ratios, tab switching and responsive layouts.
+
 ## Sources
 
 - [NASA Psyche Mars south pole, PIA26772](https://science.nasa.gov/photojournal/nasas-psyche-mission-sees-mars-south-pole-after-flyby/) — addition date May 19, 2026; acquisition May 15, 2026.

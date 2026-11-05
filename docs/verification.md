@@ -26,7 +26,7 @@
 | --- | ---: | --- |
 | POF-Workbench-Setup.exe | 432545985 | 1a6a77e0b3ee43424a2c97a23e664de75d3b6adcb03b724b4c183105ce2de4e7 |
 | POF-Workbench-Portable.zip | 483687033 | c378a5a3091d2a49ac6099aac211b00d1f593caece4245e1554490632ff90e2e |
-| POF-Workbench-Manual.zip | 7427744 | 0126ccff07f420b478540f9c1899b10ba82c932df82a86274e64497728601897 |
+| POF-Workbench-Manual.zip | 7417880 | 5968424f3910ce4730af8dba916870d22066d6634eb84219c40f8f7a66d89140 |
 
 The actual application updater parser accepts the live stable release for an older version (0.1.9), including its GitHub-provided digest, and returns no update for the current version (0.2.0). Installer execution, replacing an installed copy and exit-time handoff were not performed by this website/publication verification.
 
@@ -61,3 +61,8 @@ The actual application updater parser accepts the live stable release for an old
 - Browser regression checks cover widths 375–1920px, keyboard navigation, saved language, manual images, release/network states and normal motion.
 - Motion-specific checks cover matched image/clip transforms, rapid tab changes and live reduced-motion changes.
 - Motion never intercepts scrolling, delays navigation or changes the imagery provenance. No animation dependency or video payload was added.
+
+## Manual branding — 2026-11-06
+
+- The manual header keeps the white POF mark and lab/school text on the left.
+- The right side uses an opaque white-background Southern University of Science and Technology logo, so dark appearance does not invert or reveal transparency.

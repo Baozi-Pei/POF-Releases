@@ -41,6 +41,12 @@ The actual application updater parser accepts the live stable release for an old
 
 - Cropped the Windows title-bar strip from all five product screenshots used on the website, then rechecked their aspect ratios, tab switching and responsive layouts.
 
+## Parallax timing fix — 2026-11-06
+
+- Workflow step highlighting now follows the actual rows entering a reading anchor instead of compressing the whole section into one progress fraction.
+- The first, second and third workflow steps each receive a visible scroll window; the photo/foreground parallax alignment and reduced-motion behavior remain covered by browser checks.
+- Removed the light border around the workflow screenshot preview.
+
 ## Sources
 
 - [NASA Psyche Mars south pole, PIA26772](https://science.nasa.gov/photojournal/nasas-psyche-mission-sees-mars-south-pole-after-flyby/) — addition date May 19, 2026; acquisition May 15, 2026.

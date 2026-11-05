@@ -51,7 +51,7 @@ html[lang=zh-CN] h1{font-size:clamp(60px,7vw,106px);line-height:1.15;letter-spac
 .hero-manual{font-size:12px}.desktop-nav{gap:25px}
 .product-image-wrap{aspect-ratio:1919/1000}.stage-footer{gap:16px}.view-tabs{min-width:0;overflow-x:auto;scrollbar-width:thin}.view-tabs button{white-space:nowrap;flex-shrink:0}.stage-count{flex-shrink:0}
 .workflow-layout{grid-template-columns:.74fr 1.26fr;gap:60px}
-.workflow-visual{padding-top:32px}.workflow-preview{border-radius:7px;overflow:hidden;border:1px solid #ffffff1a;box-shadow:0 24px 70px #0004}
+.workflow-visual{padding-top:32px}.workflow-preview{border-radius:7px;overflow:hidden;border:0;box-shadow:0 24px 70px #0004}
 .workflow-preview .terrain-photo{aspect-ratio:1919/1000;object-fit:contain;opacity:1;border-radius:0}
 .example-label{font-size:10px;margin-top:16px;line-height:1.7}
 .pof-section{background:var(--paper);color:var(--ink);padding:120px 0}

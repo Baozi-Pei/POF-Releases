@@ -33,9 +33,18 @@ export function installMotion() {
   const shared = `translate3d(0,${scene.landscape}px,0) scale(1.015)`;
   landscape.style.transform = shared; foreground.style.transform = shared;
   wordmark.style.transform = `translate3d(0,${scene.wordmark}px,0)`;
-  const rect = workflow.getBoundingClientRect();
-  const t = Math.min(.999, unit((innerHeight * .7 - rect.top) / Math.max(1, rect.height * .7)));
-  steps.forEach((step, i) => step.classList.toggle('is-current', i === Math.floor(t * steps.length)));
+  // Keep the active step tied to the actual row entering the reading zone. The
+  // previous section-wide formula compressed all three rows into a short span,
+  // so the page could appear to jump straight to step 03.
+  // Place the reading anchor below the heading. This gives the first row a
+  // visible dwell period instead of activating it only as it exits the top.
+  const anchor = innerHeight * .45;
+  let current = 0;
+  steps.forEach((step, i) => {
+   const rect = step.getBoundingClientRect();
+   if (rect.top + rect.height / 2 <= anchor) current = i;
+  });
+  steps.forEach((step, i) => step.classList.toggle('is-current', i === current));
 
  }
  function schedule() { if (!pending) { pending = true; requestAnimationFrame(paint); } }

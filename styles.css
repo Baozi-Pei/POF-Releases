@@ -84,3 +84,7 @@ html[lang=zh-CN] h1{font-size:clamp(60px,7vw,106px);line-height:1.15;letter-spac
 .screenshot-button:hover:after{transform:none}
 .screenshot-button:hover:before{opacity:1}
 @media(max-width:767px){.pof-definition{font-size:9px;letter-spacing:.08em}.pof-future{font-size:11px!important}.screenshot-button:after{width:10px;height:10px}.screenshot-button:before{right:22px;bottom:27px}}
+
+.hero-coordinate .hero-lab-name{font-size:10px;letter-spacing:.04em;color:#b7b7bd}
+.hero-coordinate .hero-school{font-size:9px;color:#77777f}
+@media(max-width:767px){.hero-coordinate .hero-lab-name{font-size:8px}.hero-coordinate .hero-school{font-size:7px}}

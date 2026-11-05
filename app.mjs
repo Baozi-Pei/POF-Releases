@@ -32,7 +32,7 @@ Object.assign(zh, {
  faq4A:'POF Workbench 由南方科技大学行星与人工智能实验室（PAI）开发。首页 NASA 影像仅作为视觉背景，使用影像不代表 NASA 对本软件的认可或背书。'
 });
 Object.assign(english, {
- navAbout:'About POF',navManual:'User manual',pofDefinition:'Planetary Observation Foundation · POF',paiName:'Planetary and Artificial Intelligence Laboratory · PAI',university:'Southern University of Science and Technology',tabProject:'Projects',tabActive:'Active learning',
+ navAbout:'About POF',navManual:'User manual',paiShort:'Planetary and Artificial Intelligence Laboratory · PAI',pofDefinition:'Planetary Observation Foundation · POF',paiName:'Planetary and Artificial Intelligence Laboratory · PAI',university:'Southern University of Science and Technology',tabProject:'Projects',tabActive:'Active learning',
  projectTitle:'One project. Distinct tasks.',projectDescription:'Organize multiple research targets within a project, keeping each task’s images, labels, models and training rounds separate.',projectNote:'Projects and tasks · Separate data and models',
  activeTitle:'Continue from an existing model.',activeDescription:'Select a model, recommend regions, review labels and train with completed annotations. Or begin with a small set of manual labels.',activeNote:'Model selection · Region review · Iterative training',
  trainNote:'Metrics shown belong to the pictured training run and are not a general accuracy claim.',exampleLabel:'Actual interface · metrics belong to the displayed run',screenshotNote:'Actual interface screenshots; results depend on training data, task and image resolution.',

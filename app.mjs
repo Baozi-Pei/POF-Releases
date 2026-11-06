@@ -12,14 +12,14 @@ const zh = {
  workflowEyebrow:'02 / 主动学习',workflowTitle:'主动学习。<br>人工审核，逐轮训练。',workflowDescription:'从少量标注或已有模型开始。审核推荐区域、修正标签，再进入下一轮训练。',step1Title:'确定研究目标',step1:'导入影像，在项目下建立任务。',step2Title:'审核、修正，再继续',step2:'在同一画布上完善模型建议的标签。',step3Title:'让模型进入下一轮',step3:'使用已审核标签训练，并对比验证结果。',readManual:'阅读使用手册',loopLabel:'人工审核 / 模型学习',visualCaption:'审核推荐区域，修正目标标签。',exampleLabel:'流程示意 · 轮廓仅为示意',
  imageryEyebrow:'03 / 来自火星的视野',imageryTitle:'从轨道，观测火星。',imageryDescription:'Psyche 飞掠火星后拍摄的南极视野。<br>影像来自 NASA 任务，保留拍摄日期与原始来源。',dawnDate:'火星南极 · PSYCHE 拍摄于 2026 年 5 月 15 日',
    downloadEyebrow:'04 / 下载软件',downloadDescription:'面向 Windows 的行星影像标注与分割软件。',releaseLabel:'最新正式发布',downloadPanelTitle:'获取最新发布版本。',releaseChecking:'正在检查最新发布版本…',viewReleases:'查看发布下载',allReleases:'所有版本与便携包',runtimeLabel:'基础运行环境',runtimeValue:'已包含，无需配置 Python。',gpuLabel:'GPU 加速',gpuValue:'在设置中按需下载。',updatesLabel:'软件更新',updatesValue:'通过 GitHub Releases 发布。',downloadManual:'下载 PDF 使用手册',
- releaseMissing:'安装包尚未在 GitHub Releases 正式发布。你可以先浏览工作台和使用手册；发布后这里会自动提供最新版下载。',releaseError:'暂时无法连接 GitHub。请打开发布页查看下载文件，或稍后重试。',releaseReady:'最新正式版已就绪。选择安装包，或下载便携版。',downloadInstaller:'下载 Windows 安装包',downloadPortable:'下载便携版',
+ releaseMissing:'安装包尚未在 GitHub Releases 正式发布。你可以先浏览工作台和使用手册；发布后这里会自动提供最新版下载。',releaseError:'暂时无法获取版本信息。仍可直接下载最新版安装包，或稍后重试。',releaseReady:'最新正式版已就绪。选择安装包，或下载便携版。',downloadInstaller:'下载 Windows 安装包',downloadPortable:'下载便携版',
  faqEyebrow:'使用前了解',faqTitle:'几个常见问题。',faq1Q:'必须有 GPU 吗？',faq1A:'基础包可以使用 CPU。进行训练和推理时，兼容的 NVIDIA GPU 可以提升速度。GPU 运行库可在设置中下载和配置。',faq2Q:'可以使用已有标签吗？',faq2A:'可以打开 PNG mask 或 Shapefile 标签进行修改。在设置中选择保存格式，默认输出 PNG mask。',faq3Q:'必须提供 DEM 吗？',faq3A:'DEM 是可选的。未提供有效 DEM 时，支持的 POF 模型可以从影像估计相对地形。这种估计不等于真实测量高程。',faq4Q:'POF 与 NASA 有合作关系吗？',faq4A:'POF Workbench 由南方科技大学行星与人工智能实验室开发。NASA 影像均标注任务与来源，影像使用不代表 NASA 对本软件的认可或背书。',lab:'南方科技大学行星与人工智能实验室 开发',manual:'使用手册',credits:'影像来源',footerNote:'行星影像标注与分割。',screenshotTitle:'POF Workbench · 界面预览',screenshotNote:'训练截图中的指标与地形为演示数据。'
 };
 const english = Object.fromEntries([...document.querySelectorAll('[data-i18n]')].map(el => [el.dataset.i18n, el.innerHTML]));
 Object.assign(english, {
  trainTitle:'Watch your model take shape.',trainDescription:'Follow training curves, validation metrics, terrain estimates and predicted contours. Keep separate data and models for each task.',trainNote:'Training metrics and terrain in this screenshot are demonstration data, not measured performance.',
  predictTitle:'From one image to a whole collection.',predictDescription:'Run batch segmentation with a trained model. Follow the file queue, processing stages and error details, and organize the outputs your way.',predictNote:'PNG masks · Vector outputs · Configurable output organization',
- releaseMissing:'The installer has not been published on GitHub Releases yet. Explore the workbench and manual for now; the latest download will appear here when a release is published.',releaseError:'GitHub could not be reached right now. Open the release page to check downloads, or try again later.',releaseReady:'The latest stable release is ready. Choose the installer or the portable package.',downloadInstaller:'Download Windows installer',downloadPortable:'Download portable edition'
+ releaseMissing:'The installer has not been published on GitHub Releases yet. Explore the workbench and manual for now; the latest download will appear here when a release is published.',releaseError:'Release details could not be reached right now. You can still try the direct installer download or retry later.',releaseReady:'The latest stable release is ready. Choose the installer or the portable package.',downloadInstaller:'Download Windows installer',downloadPortable:'Download portable edition'
 });
 Object.assign(zh, {
  navAbout:'关于 POF',navManual:'使用手册',paiShort:'行星与人工智能实验室 · PAI',paiName:'行星与人工智能实验室 · PAI',university:'南方科技大学',tabProject:'项目',tabActive:'主动学习',
@@ -124,9 +124,9 @@ function renderRelease() {
  const statusKey = { checking:'releaseChecking',missing:'releaseMissing',error:'releaseError',ready:'releaseReady' }[releaseState];
  byId('release-status').textContent = text(statusKey);
  byId('release-version').textContent = release?.version || 'GitHub Releases';
- byId('installer-label').textContent = text(release?.installer ? 'downloadInstaller' : 'viewReleases');
+ byId('installer-label').textContent = text('downloadInstaller');
  if (release?.installer) {
-  byId('installer-download').href = release.installer.browser_download_url;
+  document.querySelectorAll('[data-installer-link]').forEach(link => { link.href = release.installer.browser_download_url; });
   const size = Number(release.installer.size);
   if (size > 0) byId('installer-label').textContent += ` · ${(size / 1048576).toFixed(0)} MB`;
  }

@@ -28,7 +28,7 @@ const assert = require('node:assert/strict');
  await page.locator('#download').scrollIntoViewIfNeeded();assert.match(await page.locator('#release-status').innerText(),/not been published/);await page.screenshot({path:'.qa/desktop-download.png'});
  await page.locator('#language').click();assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');await page.reload();assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');
  await page.setViewportSize({width:375,height:812});await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});await page.screenshot({path:'.qa/mobile-hero.png'});
- await page.locator('.menu-button').click();assert.equal(await page.locator('#mobile-nav').isVisible(),true);await page.locator('#mobile-nav a[href="#download"]').click();assert.equal(await page.locator('#mobile-nav').isVisible(),false);
+ await page.locator('.menu-button').click();assert.equal(await page.locator('#mobile-nav').isVisible(),true);await page.locator('#mobile-nav a[data-installer-link]').click();assert.equal(await page.locator('#mobile-nav').isVisible(),false);
  await page.screenshot({path:'.qa/mobile-download.png'});
  await page.goto('http://127.0.0.1:4173/manual/index.html',{waitUntil:'networkidle'});assert.ok((await page.title()).includes('POF'));assert.equal(await page.locator('img').evaluateAll(imgs=>imgs.filter(i=>!i.complete||!i.naturalWidth).length),0);
  const releaseContext=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});

@@ -88,3 +88,5 @@ html[lang=zh-CN] h1{font-size:clamp(60px,7vw,106px);line-height:1.15;letter-spac
 .hero-coordinate .hero-lab-name{font-size:10px;letter-spacing:.04em;color:#b7b7bd}
 .hero-coordinate .hero-school{font-size:9px;color:#77777f}
 @media(max-width:767px){.hero-coordinate .hero-lab-name{font-size:8px}.hero-coordinate .hero-school{font-size:7px}}
+
+.hero-attribution{display:flex;align-items:center;gap:12px;min-width:0}.hero-attribution .hero-coordinate{line-height:1.7}@media(max-width:767px){.hero-attribution{gap:8px;max-width:65%}.hero-attribution .hero-coordinate{line-height:1.5}.hero-attribution .university-mark{flex-shrink:0}.hero-bottom .image-credit{max-width:29%}}

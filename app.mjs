@@ -22,7 +22,7 @@ Object.assign(english, {
  releaseMissing:'The installer has not been published on GitHub Releases yet. Explore the workbench and manual for now; the latest download will appear here when a release is published.',releaseError:'GitHub could not be reached right now. Open the release page to check downloads, or try again later.',releaseReady:'The latest stable release is ready. Choose the installer or the portable package.',downloadInstaller:'Download Windows installer',downloadPortable:'Download portable edition'
 });
 Object.assign(zh, {
- navAbout:'关于 POF',navManual:'使用手册',paiName:'行星与人工智能实验室 · PAI',university:'南方科技大学',tabProject:'项目',tabActive:'主动学习',
+ navAbout:'关于 POF',navManual:'使用手册',paiShort:'行星与人工智能实验室 · PAI',paiName:'行星与人工智能实验室 · PAI',university:'南方科技大学',tabProject:'项目',tabActive:'主动学习',
  projectTitle:'按项目组织，按任务工作。',projectDescription:'一个项目下管理多个识别任务，各自保存影像、标签、模型与轮次记录。',projectNote:'项目与任务 · 独立数据与模型',
  activeTitle:'从已有模型继续。',activeDescription:'选择模型，推荐待审核区域，修正标签，再使用已完成的标注继续训练。也可以从少量人工标注开始。',activeNote:'模型选择 · 区域审核 · 逐轮训练',
  trainNote:'界面中的指标对应截图里的具体训练，不代表所有数据上的模型精度。',exampleLabel:'实际软件界面 · 指标仅对应图示训练',screenshotNote:'截图来自实际使用；效果与训练数据、任务和影像分辨率有关。',

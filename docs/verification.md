@@ -26,7 +26,7 @@
 | --- | ---: | --- |
 | POF-Workbench-Setup.exe | 432545985 | 1a6a77e0b3ee43424a2c97a23e664de75d3b6adcb03b724b4c183105ce2de4e7 |
 | POF-Workbench-Portable.zip | 483687033 | c378a5a3091d2a49ac6099aac211b00d1f593caece4245e1554490632ff90e2e |
-| POF-Workbench-Manual.zip | 7375814 | 21e17e59eb01673ca87f739fcf987e28f3e1dcfe88efef608061e207e6d33956 |
+| POF-Workbench-Manual.zip | 7456915 | dd0f7d3536865f57a9cdf8e08c0a68930c70577d0f58ae0d8fae410ac598102c |
 
 The actual application updater parser accepts the live stable release for an older version (0.1.9), including its GitHub-provided digest, and returns no update for the current version (0.2.0). Installer execution, replacing an installed copy and exit-time handoff were not performed by this website/publication verification.
 

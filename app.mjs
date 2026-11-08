@@ -160,7 +160,7 @@ function renderRelease() {
  if (release?.portable) { byId('portable-download').href = release.portable.browser_download_url; byId('portable-download').firstElementChild.textContent = text('downloadPortable'); }
 }
 const lessons = {
- annotation: { title:'lessonAnnotation', poster:'annotation.webp' },
+ annotation: { title:'lessonAnnotation', poster:'tutorial-annotation.webp' },
  training: { title:'lessonTraining', poster:'training.webp' },
  active: { title:'lessonActive', poster:'active-learning.webp' },
  inference: { title:'lessonInference', poster:'predict.webp' }
@@ -180,7 +180,7 @@ const tutorialNextSibling = tutorialTheater.nextElementSibling;
 
 function lessonURL(embedded = false) {
  const url = new URL('assets/tutorial/index.html', location.href);
- url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1'}).toString();
+ url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'mesa-mask-20261108'}).toString();
  if (embedded) {
   url.searchParams.set('embed', '1');
   url.searchParams.set('autoplay', '1');

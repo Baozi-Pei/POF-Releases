@@ -180,7 +180,7 @@ const tutorialNextSibling = tutorialTheater.nextElementSibling;
 
 function lessonURL(embedded = false) {
  const url = new URL('assets/tutorial/index.html', location.href);
- url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'mesa-brush-review-20261109'}).toString();
+ url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'mesa-steady-edit-20261109'}).toString();
  if (embedded) {
   url.searchParams.set('embed', '1');
   url.searchParams.set('autoplay', '1');

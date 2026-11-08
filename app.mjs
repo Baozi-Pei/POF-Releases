@@ -40,7 +40,7 @@ Object.assign(english, {
  faq4A:'POF Workbench is developed by the Planetary and Artificial Intelligence Laboratory (PAI) at Southern University of Science and Technology. NASA imagery is credited visual context; its use does not imply NASA endorsement.'
 });
 Object.assign(english, {
- navTutorial:'Tutorials', tutorialEyebrow:'QUICK TUTORIALS / MARS CTX', tutorialTitle:'Learn with Mesa.',
+ openTutorial:'Explore the tutorials', navTutorial:'Tutorials', tutorialEyebrow:'QUICK TUTORIALS / MARS CTX', tutorialTitle:'Learn with Mesa.',
  tutorialIntro:'Follow one Martian landform through four short lessons, from drawing a label to checking a batch segmentation result. Click through at your own pace.',
  tutorialPlay:'Explore lesson', tutorialClose:'Back to website', tutorialOpen:'Open full walkthrough',
  tutorialNote:'Mars CTX imagery · Demonstration results',
@@ -50,7 +50,7 @@ Object.assign(english, {
  lessonInference:'Inference', lessonInferenceDetail:'Run a batch and inspect segmentation masks.'
 });
 Object.assign(zh, {
- navTutorial:'快速教程', tutorialEyebrow:'快速教程 / 火星 CTX 影像', tutorialTitle:'用火星方山练一遍。',
+ openTutorial:'查看教程', navTutorial:'快速教程', tutorialEyebrow:'快速教程 / 火星 CTX 影像', tutorialTitle:'用火星方山练一遍。',
  tutorialIntro:'四段短教程，从描出第一座方山，到检查整批影像的分割结果。点击推进，按自己的节奏学。',
  tutorialPlay:'开始本章', tutorialClose:'返回官网', tutorialOpen:'打开完整教程',
  tutorialNote:'火星 CTX 影像 · 演示结果',
@@ -163,7 +163,7 @@ const lessons = {
  annotation: { title:'lessonAnnotation', poster:'tutorial-annotation.webp' },
  training: { title:'lessonTraining', poster:'training.webp' },
  active: { title:'lessonActive', poster:'tutorial-active-mesa.webp' },
- inference: { title:'lessonInference', poster:'predict.webp' }
+ inference: { title:'lessonInference', poster:'tutorial-inference-mesa.webp' }
 };
 let currentLesson = 'annotation';
 let tutorialFrame = null;
@@ -180,7 +180,7 @@ const tutorialNextSibling = tutorialTheater.nextElementSibling;
 
 function lessonURL(embedded = false) {
  const url = new URL('assets/tutorial/index.html', location.href);
- url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'mesa-review-20261108'}).toString();
+ url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'mesa-boundaries-20261109'}).toString();
  if (embedded) {
   url.searchParams.set('embed', '1');
   url.searchParams.set('autoplay', '1');

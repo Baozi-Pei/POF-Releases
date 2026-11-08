@@ -14,3 +14,5 @@ a{color:var(--accent);text-underline-offset:4px}a:focus-visible,button:focus-vis
 @media print{.reader-brand img,.manual-header .pof-logo{content:normal;filter:none;object-fit:contain}}
 
 @media print{.manual-header .sustech-logo{background:transparent;filter:none;padding:0}}
+
+@media print{.reader-main section{break-before:page}.reader-main section:first-of-type{break-before:auto}body.reader{font-size:10pt;line-height:1.55}.reader-main figure{margin:14px 0}.reader-main figure img{max-height:78mm}}

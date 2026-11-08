@@ -39,6 +39,26 @@ Object.assign(english, {
  lab:'Developed by PAI · Southern University of Science and Technology',pofFuture:'POF is designed to grow toward recognition and additional planetary-image tasks.',
  faq4A:'POF Workbench is developed by the Planetary and Artificial Intelligence Laboratory (PAI) at Southern University of Science and Technology. NASA imagery is credited visual context; its use does not imply NASA endorsement.'
 });
+Object.assign(english, {
+ navTutorial:'Tutorials', tutorialEyebrow:'QUICK TUTORIALS / MARS CTX', tutorialTitle:'Learn with Mesa.',
+ tutorialIntro:'Follow one Martian landform through four short lessons, from drawing a label to checking a batch segmentation result. Click through at your own pace.',
+ tutorialPlay:'Explore lesson', tutorialClose:'Back to website', tutorialOpen:'Open full walkthrough',
+ tutorialNote:'Mars CTX imagery · Demonstration results',
+ lessonAnnotation:'Annotation', lessonAnnotationDetail:'Outline a mesa and save a mask.',
+ lessonTraining:'Training', lessonTrainingDetail:'Pair data, start training and read the curves.',
+ lessonActive:'Active learning', lessonActiveDetail:'Review suggested labels and compare rounds.',
+ lessonInference:'Inference', lessonInferenceDetail:'Run a batch and inspect segmentation masks.'
+});
+Object.assign(zh, {
+ navTutorial:'快速教程', tutorialEyebrow:'快速教程 / 火星 CTX 影像', tutorialTitle:'用火星方山练一遍。',
+ tutorialIntro:'四段短教程，从描出第一座方山，到检查整批影像的分割结果。点击推进，按自己的节奏学。',
+ tutorialPlay:'开始本章', tutorialClose:'返回官网', tutorialOpen:'打开完整教程',
+ tutorialNote:'火星 CTX 影像 · 演示结果',
+ lessonAnnotation:'标注', lessonAnnotationDetail:'描出方山轮廓，保存为 mask。',
+ lessonTraining:'训练', lessonTrainingDetail:'配对影像与标签，启动训练并查看曲线。',
+ lessonActive:'主动学习', lessonActiveDetail:'审核推荐标签，用少量新标注训练下一轮。',
+ lessonInference:'推理', lessonInferenceDetail:'批量运行，检查分割结果和输出文件。'
+});
 let language = 'en';
 try { if (localStorage.getItem('pof-site-language') === 'zh') language = 'zh'; } catch {}
 let releaseState = 'checking';
@@ -54,7 +74,7 @@ function translate() {
  document.querySelectorAll('[data-manual-link]').forEach(a => a.href = language === 'zh' ? 'manual/index.html' : 'manual/en.html');
   document.querySelectorAll('[data-manual-download]').forEach(a => a.href = `manual/POF-Workbench-Manual-${language.toUpperCase()}.pdf`);
   document.title = language === 'zh' ? 'POF Workbench — 行星影像工作台' : 'POF Workbench — Planetary image annotation and segmentation';
- renderView(false); renderRelease();
+ renderView(false); renderRelease(); renderTutorial();
 }
 byId('language').addEventListener('click', () => { language = language === 'en' ? 'zh' : 'en'; try { localStorage.setItem('pof-site-language', language); } catch {} translate(); });
 const views = {
@@ -114,7 +134,14 @@ byId('mobile-nav').querySelectorAll('a').forEach(link => link.addEventListener('
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && !byId('mobile-nav').hidden) { byId('mobile-nav').hidden = true; menuButton.setAttribute('aria-expanded','false'); menuButton.focus(); } });
 const header = document.querySelector('.site-header');
 let scrollPending = false;
-window.addEventListener('scroll', () => { if (!scrollPending) { scrollPending = true; requestAnimationFrame(() => { header.classList.toggle('is-fixed', scrollY > 70); scrollPending = false; }); } }, { passive:true });
+window.addEventListener('scroll', () => { if (!scrollPending) { scrollPending = true; requestAnimationFrame(() => { header.classList.toggle('is-fixed', scrollY > 70);
+ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !byId('tutorial-dialog').open) {
+  const poster = byId('tutorial-poster');
+  const box = poster.getBoundingClientRect();
+  if (box.bottom > 0 && box.top < innerHeight) {
+   poster.style.setProperty('--poster-offset', `${Math.max(-14, Math.min(14, (innerHeight / 2 - box.top - box.height / 2) * .035))}px`);
+  }
+ } scrollPending = false; }); } }, { passive:true });
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
  document.documentElement.classList.add('motion-ready');
  const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, { threshold:.08 });
@@ -132,6 +159,110 @@ function renderRelease() {
  }
  if (release?.portable) { byId('portable-download').href = release.portable.browser_download_url; byId('portable-download').firstElementChild.textContent = text('downloadPortable'); }
 }
+const lessons = {
+ annotation: { title:'lessonAnnotation', poster:'annotation.webp' },
+ training: { title:'lessonTraining', poster:'training.webp' },
+ active: { title:'lessonActive', poster:'active-learning.webp' },
+ inference: { title:'lessonInference', poster:'predict.webp' }
+};
+let currentLesson = 'annotation';
+let tutorialFrame = null;
+const chapterButtons = [...document.querySelectorAll('[data-lesson]')];
+const tutorialPlay = byId('tutorial-play');
+const tutorialPoster = byId('tutorial-poster');
+const tutorialClose = byId('tutorial-close');
+const tutorialScreen = byId('tutorial-screen');
+const tutorialDialog = byId('tutorial-dialog');
+const tutorialTheater = document.querySelector('.tutorial-theater');
+const tutorialHome = tutorialTheater.parentElement;
+const tutorialNextSibling = tutorialTheater.nextElementSibling;
+
+
+function lessonURL(embedded = false) {
+ const url = new URL('assets/tutorial/index.html', location.href);
+ url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1'}).toString();
+ if (embedded) {
+  url.searchParams.set('embed', '1');
+  url.searchParams.set('autoplay', '1');
+ }
+ return url.href;
+}
+
+function renderTutorial() {
+ const lesson = lessons[currentLesson];
+ const poster = byId('tutorial-image');
+ const posterURL = `assets/${lesson.poster}`;
+ if (poster.getAttribute('src') !== posterURL) poster.src = posterURL;
+ poster.alt = text(lesson.title);
+ byId('tutorial-dialog-title').textContent = text(lessons[currentLesson].title);
+ byId('tutorial-dismiss').setAttribute('aria-label', language === 'zh' ? '关闭教程' : 'Close tutorial');
+ document.querySelectorAll('[data-dialog-lesson]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.dialogLesson === currentLesson)));
+ chapterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lesson === currentLesson)));
+ byId('tutorial-note').textContent = text('tutorialNote');
+ tutorialPlay.href = byId('tutorial-open').href = lessonURL();
+ if (tutorialFrame) {
+  tutorialFrame.title = `POF Workbench · ${text(lesson.title)}`;
+  if (tutorialFrame.src !== lessonURL(true)) tutorialFrame.src = lessonURL(true);
+ }
+}
+
+function closeTutorial() {
+ tutorialFrame?.remove();
+ tutorialFrame = null;
+ tutorialPoster.hidden = false;
+ tutorialClose.hidden = true;
+ if (tutorialDialog.open) tutorialDialog.close();
+ tutorialHome.insertBefore(tutorialTheater, tutorialNextSibling);
+}
+
+tutorialPlay.addEventListener('click', event => {
+ if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+ event.preventDefault();
+ byId('tutorial-dialog-body').append(tutorialTheater);
+ tutorialDialog.showModal();
+ tutorialFrame = document.createElement('iframe');
+ tutorialFrame.src = lessonURL(true);
+ tutorialFrame.title = `POF Workbench · ${text(lessons[currentLesson].title)}`;
+ tutorialFrame.allowFullscreen = true;
+ tutorialScreen.append(tutorialFrame);
+ tutorialPoster.hidden = true;
+ tutorialClose.hidden = true;
+ tutorialFrame.focus();
+});
+tutorialClose.addEventListener('click', () => {
+ closeTutorial();
+ tutorialPlay.focus();
+});
+window.addEventListener('message', event => {
+ if (event.origin === location.origin && event.source === tutorialFrame?.contentWindow && event.data?.type === 'pof-tutorial-close') closeTutorial();
+});
+byId('tutorial-dismiss').addEventListener('click', closeTutorial);
+tutorialDialog.addEventListener('close', () => {
+ if (tutorialFrame) closeTutorial();
+ tutorialPlay.focus();
+});
+document.querySelector('.tutorial-dialog-brand').addEventListener('click', event => {
+ event.preventDefault();
+ closeTutorial();
+});
+document.querySelectorAll('[data-dialog-lesson]').forEach(button => button.addEventListener('click', () => {
+ if (currentLesson === button.dataset.dialogLesson) return;
+ currentLesson = button.dataset.dialogLesson;
+ renderTutorial();
+}));
+chapterButtons.forEach(button => button.addEventListener('click', () => {
+ if (currentLesson === button.dataset.lesson) return;
+ closeTutorial();
+ currentLesson = button.dataset.lesson;
+ renderTutorial();
+}));
+if ('IntersectionObserver' in window) {
+ const visibility = new IntersectionObserver(([entry]) => {
+  if (!entry.isIntersecting && !tutorialDialog.open) tutorialFrame?.contentWindow?.__POF_PREVIEW?.pause();
+ });
+ visibility.observe(tutorialScreen);
+}
+
 translate();
 async function loadRelease() {
  try {

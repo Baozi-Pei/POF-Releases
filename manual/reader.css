@@ -8,11 +8,15 @@ a{color:var(--accent);text-underline-offset:4px}a:focus-visible,button:focus-vis
 @media(max-width:560px){.reader-bar{padding:12px 16px;gap:10px;min-height:64px}.reader-brand{font-size:12px;gap:7px}.reader-brand span{display:none}.reader-brand img{width:24px;height:24px}.reader-actions a,.reader-actions button{padding:7px 8px;font-size:11px}.reader-actions .download-link{display:none}.reader-layout{padding:14px 12px 36px}.reader-main{padding:28px 22px;border-radius:12px;font-size:14px}.reader-main h1{font-size:28px}.reader-main h2{font-size:22px}.reader-main h3{font-size:16px}.reader-main table{font-size:11px}.reader-main th,.reader-main td{padding:8px 6px}.reader-nav ol{columns:1}.reader-main .manual-header{gap:10px;flex-wrap:wrap}.reader-main .manual-header .sustech-logo{width:110px;flex-basis:110px;height:30px}.reader-main .manual-header .lab-line{font-size:9px}.reader-main figure{margin-left:-10px;margin-right:-10px}.reader-progress{top:63px}}
 @media(prefers-color-scheme:dark){:root{--paper:#1c1c1e;--page:#111113;--ink:#e9e9ed;--muted:#a1a1aa;--rule:#333338;--accent:#fa8266;--soft:#2a2a2f}.reader-brand img,.manual-header .pof-logo{content:url("manual-images/pof-logo-light.png");filter:none;object-fit:contain}.manual-header .sustech-logo{background:transparent;border-radius:0;padding:0;filter:brightness(0) invert(1)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@page{size:A4;margin:23mm 24mm 24mm}
-@media print{html,body.reader{background:white;color:#303030}body.reader{font-size:10.5pt;line-height:1.72}.reader-bar,.reader-nav,.reader-progress,.reader-end{display:none}.reader-layout{display:block;max-width:none;margin:0;padding:0}.reader-main{padding:0;max-width:none;background:white;box-shadow:none;border-radius:0}.reader-main h1{font-size:23pt}.reader-main h2{font-size:16pt;padding-top:0;border:0}.reader-main h3{font-size:12pt}.reader-main .print-contents{display:block}.reader-main .page-break{break-before:page;page-break-before:always;margin:0}.reader-main figure{margin:20px 0}.reader-main figure img{max-height:105mm;object-fit:contain}.reader-main figcaption{font-size:9pt}.reader-main table{font-size:9pt}.reader-main .manual-header{margin-bottom:26px}h1,h2,h3{break-after:avoid}pre,blockquote,figure,tr{break-inside:avoid}p{orphans:3;widows:3}a{color:inherit;text-decoration:none}thead{display:table-header-group}}
-
-@media print{.reader-brand img,.manual-header .pof-logo{content:normal;filter:none;object-fit:contain}}
-
-@media print{.manual-header .sustech-logo{background:transparent;filter:none;padding:0}}
-
-@media print{.reader-main section{break-before:page}.reader-main section:first-of-type{break-before:auto}body.reader{font-size:10pt;line-height:1.55}.reader-main figure{margin:14px 0}.reader-main figure img{max-height:78mm}}
+@page{size:A4;margin:20mm 22mm 22mm}
+@media print{
+ html,body.reader{background:white;color:#303030}body.reader{font-size:10pt;line-height:1.35}
+ .reader-bar,.reader-nav,.reader-progress,.reader-end{display:none}.reader-layout{display:block;max-width:none;margin:0;padding:0}.reader-main{padding:0;max-width:none;background:white;box-shadow:none;border-radius:0}
+ .reader-main h1{font-size:23pt}.reader-main h2{font-size:16pt;padding-top:0;border:0;margin:0 0 16px}.reader-main h3{font-size:12pt;margin:12px 0 5px}
+ .reader-main p{margin:7px 0 9px}.reader-main li{margin-bottom:3px}.reader-main ul,.reader-main ol{margin:9px 0 11px;padding-left:23px}
+ .reader-main section{break-before:page}.reader-main section:first-of-type{break-before:auto}.reader-main section:last-of-type{break-before:auto;margin-top:28px}.reader-main .page-break{break-before:page;margin:0}
+ .reader-main figure{margin:9px 0;break-inside:avoid}.reader-main figure img{width:100%;height:40mm;max-height:40mm;object-fit:contain}.reader-main figcaption{margin-top:6px;font-size:8pt}
+ .reader-main .manual-header{margin-bottom:26px}.reader-brand img,.manual-header .pof-logo{content:normal;filter:none;object-fit:contain}.manual-header .sustech-logo{background:transparent;filter:none;padding:0}
+ .reader-main .print-contents{display:block;font-size:9pt;margin:12px 0 18px;line-height:1.8}.print-contents a{margin-right:12px;white-space:nowrap}
+ h1,h2,h3{break-after:avoid}pre,blockquote,figure,tr{break-inside:avoid}p{orphans:3;widows:3}a{color:inherit;text-decoration:none}
+}

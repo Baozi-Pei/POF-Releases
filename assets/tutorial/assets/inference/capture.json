@@ -5,6 +5,41 @@
     "MESA_026"
   ],
   "illustrative": true,
+  "imageSources": [
+    {
+      "alias": "MESA_024",
+      "sourceImage": "MurrayLab_CTX_V01_E156_N40_Mosaic.tif",
+      "mask": "MurrayLab_CTX_V01_E156_N40_Mosaic.png",
+      "window": [
+        11200,
+        100,
+        1200,
+        1000
+      ]
+    },
+    {
+      "alias": "MESA_025",
+      "sourceImage": "MurrayLab_CTX_V01_E172_N32_Mosaic.tif",
+      "mask": "MurrayLab_CTX_V01_E172_N32_Mosaic.png",
+      "window": [
+        6300,
+        6250,
+        1100,
+        1200
+      ]
+    },
+    {
+      "alias": "MESA_026",
+      "sourceImage": "MurrayLab_CTX_V01_E176_N24_Mosaic.tif",
+      "mask": "MurrayLab_CTX_V01_E176_N24_Mosaic.png",
+      "window": [
+        12000,
+        0,
+        2100,
+        2400
+      ]
+    }
+  ],
   "newProject": {
     "x": 1739,
     "y": 92,
@@ -29,6 +64,28 @@
     "next": {
       "x": 907,
       "y": 598,
+      "w": 165,
+      "h": 40
+    }
+  },
+  "source": {
+    "w": 1100,
+    "h": 750,
+    "workflow": {
+      "x": 731,
+      "y": 134,
+      "w": 341,
+      "h": 40
+    },
+    "folder": {
+      "x": 972,
+      "y": 369,
+      "w": 82,
+      "h": 40
+    },
+    "create": {
+      "x": 907,
+      "y": 688,
       "w": 165,
       "h": 40
     }
@@ -157,28 +214,6 @@
       "y": 60,
       "w": 1486,
       "h": 818
-    }
-  },
-  "source": {
-    "w": 1100,
-    "h": 750,
-    "workflow": {
-      "x": 731,
-      "y": 134,
-      "w": 341,
-      "h": 40
-    },
-    "folder": {
-      "x": 972,
-      "y": 369,
-      "w": 82,
-      "h": 40
-    },
-    "create": {
-      "x": 907,
-      "y": 688,
-      "w": 165,
-      "h": 40
     }
   }
 }

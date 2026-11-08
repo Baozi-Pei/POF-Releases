@@ -162,7 +162,7 @@ function renderRelease() {
 const lessons = {
  annotation: { title:'lessonAnnotation', poster:'tutorial-annotation.webp' },
  training: { title:'lessonTraining', poster:'training.webp' },
- active: { title:'lessonActive', poster:'active-learning.webp' },
+ active: { title:'lessonActive', poster:'tutorial-active-mesa.webp' },
  inference: { title:'lessonInference', poster:'predict.webp' }
 };
 let currentLesson = 'annotation';
@@ -180,7 +180,7 @@ const tutorialNextSibling = tutorialTheater.nextElementSibling;
 
 function lessonURL(embedded = false) {
  const url = new URL('assets/tutorial/index.html', location.href);
- url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'continuous-training-20261108'}).toString();
+ url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'mesa-review-20261108'}).toString();
  if (embedded) {
   url.searchParams.set('embed', '1');
   url.searchParams.set('autoplay', '1');

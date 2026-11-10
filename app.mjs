@@ -180,7 +180,7 @@ const tutorialNextSibling = tutorialTheater.nextElementSibling;
 
 function lessonURL(embedded = false) {
  const url = new URL('assets/tutorial/index.html', location.href);
- url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'mesa-training-contours-20261109'}).toString();
+ url.search = new URLSearchParams({chapter:currentLesson, lang:language, guided:'1', v:'chapter-navigation-20261110'}).toString();
  if (embedded) {
   url.searchParams.set('embed', '1');
   url.searchParams.set('autoplay', '1');
@@ -234,7 +234,16 @@ tutorialClose.addEventListener('click', () => {
  tutorialPlay.focus();
 });
 window.addEventListener('message', event => {
- if (event.origin === location.origin && event.source === tutorialFrame?.contentWindow && event.data?.type === 'pof-tutorial-close') closeTutorial();
+ if (event.origin !== location.origin || event.source !== tutorialFrame?.contentWindow) return;
+ if (event.data?.type === 'pof-tutorial-close') closeTutorial();
+ if (event.data?.type === 'pof-tutorial-next-chapter') {
+  const lessonOrder = Object.keys(lessons);
+  const nextLesson = lessonOrder[lessonOrder.indexOf(currentLesson) + 1];
+  if (nextLesson && event.data.chapter === nextLesson) {
+   currentLesson = nextLesson;
+   renderTutorial();
+  }
+ }
 });
 byId('tutorial-dismiss').addEventListener('click', closeTutorial);
 tutorialDialog.addEventListener('close', () => {

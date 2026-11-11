@@ -10,7 +10,7 @@ Visit **https://baozi-pei.github.io/POF-Releases/** for the product website and 
 - Actual POF interface previews for annotation, training and batch inference.
 - English / Chinese language switch with saved preference.
 - Responsive layouts, keyboard navigation and reduced-motion support.
-- The download panel reads the newest stable public GitHub Release. Drafts and prereleases are not advertised. When no installer exists, the page says so and links to the release archive.
+- Downloads use a verified same-origin `downloads.json` snapshot, refreshed from the latest stable GitHub Release when its API is reachable. Drafts, incomplete uploads and zero-byte files are not advertised. Primary links download the installer directly, including when JavaScript is disabled.
 - A locally hosted illustrated Chinese user manual.
 
 ## Deploy to GitHub Pages

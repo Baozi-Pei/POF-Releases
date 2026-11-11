@@ -25,10 +25,11 @@ jobs:
       - name: Stage public website only
         run: |
           mkdir _site
-          cp index.html credits.html styles.css app.mjs release.mjs motion.mjs _site/
+          cp index.html credits.html styles.css app.mjs release.mjs motion.mjs downloads.json _site/
           cp -R assets manual _site/
           pof_asset_revision="$(git rev-parse --short=12 HEAD)"
           sed -i "s|styles.css|styles.css?v=$pof_asset_revision|g; s|app.mjs|app.mjs?v=$pof_asset_revision|g" _site/index.html _site/credits.html
+          sed -i "s|./release.mjs|./release.mjs?v=$pof_asset_revision|g; s|./motion.mjs|./motion.mjs?v=$pof_asset_revision|g" _site/app.mjs
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

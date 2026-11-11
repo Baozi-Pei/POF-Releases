@@ -25,7 +25,7 @@ const assert = require('node:assert/strict');
  await page.locator('#product-enlarge').click();assert.equal(await page.locator('#image-dialog').evaluate(e=>e.open),true);await page.keyboard.press('Escape');assert.equal(await page.locator('#image-dialog').evaluate(e=>e.open),false);
  await page.locator('#workflow').scrollIntoViewIfNeeded();await page.screenshot({path:'.qa/desktop-workflow.png'});
  await page.locator('#about').scrollIntoViewIfNeeded();await page.screenshot({path:'.qa/desktop-about.png'});
- await page.locator('#download').scrollIntoViewIfNeeded();assert.match(await page.locator('#release-status').innerText(),/not been published/);await page.screenshot({path:'.qa/desktop-download.png'});
+ await page.locator('#download').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.getElementById('release-status').textContent.includes('Verified release'));await page.screenshot({path:'.qa/desktop-download.png'});
  await page.locator('#language').click();assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');await page.reload();assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');
  await page.setViewportSize({width:375,height:812});await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});await page.screenshot({path:'.qa/mobile-hero.png'});
  await page.locator('.menu-button').click();assert.equal(await page.locator('#mobile-nav').isVisible(),true);await page.locator('#mobile-nav a[data-installer-link]').click();assert.equal(await page.locator('#mobile-nav').isVisible(),false);

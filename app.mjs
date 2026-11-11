@@ -1,5 +1,5 @@
 import { installMotion } from './motion.mjs';
-import { selectRelease } from './release.mjs';
+import { discoverRelease } from './release.mjs';
 
 const zh = {
  skip:'跳到正文',navProduct:'工作台',navWorkflow:'工作流程',navImagery:'火星影像',navDownload:'下载',
@@ -17,11 +17,13 @@ const zh = {
 };
 const english = Object.fromEntries([...document.querySelectorAll('[data-i18n]')].map(el => [el.dataset.i18n, el.innerHTML]));
 Object.assign(english, {
+ echoCompatibility:'ECHO 0.3 uses a new segmentation core. Older POF model weights are incompatible; keep your images and labels and retrain.',
  trainTitle:'Watch your model take shape.',trainDescription:'Follow training curves, validation metrics, terrain estimates and predicted contours. Keep separate data and models for each task.',trainNote:'Training metrics and terrain in this screenshot are demonstration data, not measured performance.',
  predictTitle:'From one image to a whole collection.',predictDescription:'Run batch segmentation with a trained model. Follow the file queue, processing stages and error details, and organize the outputs your way.',predictNote:'PNG masks · Vector outputs · Configurable output organization',
  releaseMissing:'The installer has not been published on GitHub Releases yet. Explore the workbench and manual for now; the latest download will appear here when a release is published.',releaseError:'Release details could not be reached right now. You can still try the direct installer download or retry later.',releaseReady:'The latest stable release is ready. Choose the installer or the portable package.',downloadInstaller:'Download Windows installer',downloadPortable:'Download portable edition'
 });
 Object.assign(zh, {
+ echoCompatibility:'ECHO 0.3 已更换分割核心，不兼容旧 POF 模型权重；原影像与标签可继续使用，模型需重新训练。',
  navAbout:'关于 POF',navManual:'使用手册',paiShort:'行星与人工智能实验室 · PAI',paiName:'行星与人工智能实验室 · PAI',university:'南方科技大学',tabProject:'项目',tabActive:'主动学习',
  projectTitle:'按项目组织，按任务工作。',projectDescription:'一个项目下管理多个识别任务，各自保存影像、标签、模型与轮次记录。',projectNote:'项目与任务 · 独立数据与模型',
  activeTitle:'从已有模型继续。',activeDescription:'选择模型，推荐待审核区域，修正标签，再使用已完成的标注继续训练。也可以从少量人工标注开始。',activeNote:'模型选择 · 区域审核 · 逐轮训练',
@@ -64,6 +66,18 @@ try { if (localStorage.getItem('pof-site-language') === 'zh') language = 'zh'; }
 let releaseState = 'checking';
 let release = null;
 let selectedView = 'annotate';
+Object.assign(english, {
+ releaseVerified:'Verified release available. Download the installer or portable edition directly.',
+ releaseError:'Download information is temporarily unavailable. Refresh this page or view all releases below.',
+ faq3A:'DEM is optional in ECHO. Use optical imagery alone, or choose a DEM-capable model and provide measured elevation over a four-times wider footprint. ECHO does not generate super-resolution or monocular terrain.',
+ trainDescription:'Follow training curves, validation metrics, optional measured DEM context and segmentation contours. Each task keeps its own data and models.'
+});
+Object.assign(zh, {
+ releaseVerified:'已验证版本可用，可直接下载安装包或便携版。',
+ releaseError:'暂时无法读取下载信息，请刷新页面，或查看下方的所有版本。',
+ faq3A:'ECHO 的 DEM 输入是可选的。可以只使用光学影像；选择支持 DEM 的模型后，也可提供四倍边长范围的实测地形。ECHO 不生成超分或单目地形。',
+ trainDescription:'查看训练曲线、验证指标、可选的实测 DEM 上下文和分割轮廓。不同任务分别保存数据与模型。'
+});
 const byId = id => document.getElementById(id);
 const text = key => (language === 'zh' ? zh[key] : english[key]) || english[key] || key;
 function translate() {
@@ -148,13 +162,18 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObse
  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 function renderRelease() {
- const statusKey = { checking:'releaseChecking',missing:'releaseMissing',error:'releaseError',ready:'releaseReady' }[releaseState];
+ const statusKey = { checking:'releaseChecking',missing:'releaseMissing',error:'releaseError',ready:'releaseReady',snapshot:'releaseVerified' }[releaseState];
  byId('release-status').textContent = text(statusKey);
  byId('release-version').textContent = release?.version || 'GitHub Releases';
  byId('installer-label').textContent = text('downloadInstaller');
- if (release?.installer) {
-  document.querySelectorAll('[data-installer-link]').forEach(link => { link.href = release.installer.browser_download_url; });
-  const size = Number(release.installer.size);
+ const primary=release?.installer || release?.portable;
+ document.querySelectorAll('[data-installer-link]').forEach(link=>{
+  if(primary) {link.href=primary.browser_download_url;link.removeAttribute('aria-disabled');}
+  else if(releaseState!=='checking') {link.removeAttribute('href');link.setAttribute('aria-disabled','true');}
+ });
+ if (primary) {
+  byId('installer-label').textContent=text(release.installer?'downloadInstaller':'downloadPortable');
+  const size = Number(primary.size);
   if (size > 0) byId('installer-label').textContent += ` · ${(size / 1048576).toFixed(0)} MB`;
  }
  if (release?.portable) { byId('portable-download').href = release.portable.browser_download_url; byId('portable-download').firstElementChild.textContent = text('downloadPortable'); }
@@ -274,11 +293,9 @@ if ('IntersectionObserver' in window) {
 
 translate();
 async function loadRelease() {
- try {
-  const response = await fetch('https://api.github.com/repos/Baozi-Pei/POF-Releases/releases/latest', { headers:{ Accept:'application/vnd.github+json' }, signal:AbortSignal.timeout(10000) });
-  if (response.status === 404) releaseState = 'missing';
-  else { if (!response.ok) throw new Error(`GitHub ${response.status}`); release = selectRelease(await response.json()); releaseState = release.installer || release.portable ? 'ready' : 'missing'; }
- } catch { releaseState = 'error'; }
+ const show=value=>{release=value;releaseState=value.source==='snapshot'?'snapshot':'ready';renderRelease();};
+ const selected=await discoverRelease({onSnapshot:show});
+ if(selected)show(selected);else releaseState='error';
  renderRelease();
 }
 loadRelease();

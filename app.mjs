@@ -28,8 +28,9 @@ Object.assign(zh, {
  projectTitle:'按项目组织，按任务工作。',projectDescription:'一个项目下管理多个识别任务，各自保存影像、标签、模型与轮次记录。',projectNote:'项目与任务 · 独立数据与模型',
  activeTitle:'从已有模型继续。',activeDescription:'选择模型，推荐待审核区域，修正标签，再使用已完成的标注继续训练。也可以从少量人工标注开始。',activeNote:'模型选择 · 区域审核 · 逐轮训练',
  trainNote:'界面中的指标对应截图里的具体训练，不代表所有数据上的模型精度。',exampleLabel:'实际软件界面 · 指标仅对应图示训练',screenshotNote:'截图来自实际使用；效果与训练数据、任务和影像分辨率有关。',
- aboutEyebrow:'03 / POF 框架',aboutTitle:'地形辅助。<br>像素级分割。',aboutDescription:'POF 是面向行星遥感影像的地形辅助分割框架。它融合语义上下文、局部纹理细节与地形线索，逐像素识别特定地貌目标。',aboutWorkbench:'POF Workbench 将这一框架放入完整的桌面流程：准备标签、训练任务模型、审核推荐区域，并导出分割结果。',pofFuture:'POF 将继续扩展到识别与更多行星影像任务。',aboutGuide:'在使用手册中了解完整流程',
- semanticTitle:'语义上下文',semanticDescription:'DINOv3 特征描述更大范围的形态与上下文。',detailTitle:'局部细节',detailDescription:'CNN 分支保留纹理、边缘和小尺度特征。',terrainTitle:'地形线索',terrainDescription:'按需加入实测 DEM 上下文，未添加时使用光学影像。',outputTitle:'目标分割',outputDescription:'像素掩膜、目标边界与可选 GIS 矢量。',terrainNote:'ECHO 使用可选实测地形，不生成超分地形。分割效果取决于任务、训练数据和影像分辨率。',
+ aboutEyebrow:'03 / ECHO 分割核心',aboutTitle:'ECHO。<br>从影像出发。',aboutDescription:'POF Workbench 现采用 ECHO（Elevation-Conditioned Hierarchical Optics）分割核心。MiT-B5 光学编码器与 U 形卷积解码器直接从影像中分割任务目标，实测地形可按需加入。',aboutWorkbench:'训练、主动学习与批量推理使用同一 ECHO 模型体系。每项任务独立保存标签、模型与验证记录。',pofFuture:'识别与更多行星影像任务将作为后续功能扩展。',aboutGuide:'了解模型与 DEM 的使用方式',
+ semanticTitle:'MiT-B5 光学编码器',semanticDescription:'读取影像第一波段并归一化，提取四级分辨率的层次特征。',detailTitle:'U 形卷积解码器',detailDescription:'通过跳跃连接融合各级编码特征与浅层影像特征，恢复像素级分割。',terrainTitle:'实测 DEM · 可选',terrainDescription:'读取光学窗口边长 4 倍范围的地形，将相对高程、坡度和有效区特征注入编码器最深的两级。',outputTitle:'从概率到分割结果',outputDescription:'重叠窗口采用 Hann 加权拼接，选定尺度先融合再阈值化，输出 mask 与可选 GIS 矢量。',terrainNote:'4 倍指 DEM 覆盖范围，不是超分辨率；ECHO 不生成地形。尺度选择受训练采样与有效验证上下文限制，不保证未见尺度上的效果。',
+ scaleTitle:'让数据决定推理尺度。',scaleDescription:'训练时采样不同大小的原图窗口，在独立验证区域比较单尺度与金字塔方案，将选定窗口和融合权重随模型保存，供推理直接使用。',
  manualFeatureTitle:'图文使用手册',manualFeatureDescription:'从安装、标注，到训练与推理，按模块查看操作说明。',lab:'南方科技大学 · 行星与人工智能实验室 PAI 开发',
  faq4A:'POF Workbench 由南方科技大学行星与人工智能实验室（PAI）开发。首页 NASA 影像仅作为视觉背景，使用影像不代表 NASA 对本软件的认可或背书。'
 });
@@ -38,7 +39,7 @@ Object.assign(english, {
  projectTitle:'One project. Distinct tasks.',projectDescription:'Organize multiple research targets within a project, keeping each task’s images, labels, models and training rounds separate.',projectNote:'Projects and tasks · Separate data and models',
  activeTitle:'Continue from an existing model.',activeDescription:'Select a model, recommend regions, review labels and train with completed annotations. Or begin with a small set of manual labels.',activeNote:'Model selection · Region review · Iterative training',
  trainNote:'Metrics shown belong to the pictured training run and are not a general accuracy claim.',exampleLabel:'Actual interface · metrics belong to the displayed run',screenshotNote:'Actual interface screenshots; results depend on training data, task and image resolution.',
- lab:'Developed by PAI · Southern University of Science and Technology',pofFuture:'POF is designed to grow toward recognition and additional planetary-image tasks.',
+ lab:'Developed by PAI · Southern University of Science and Technology',pofFuture:'Recognition and additional planetary-image tasks remain planned extensions.',
  faq4A:'POF Workbench is developed by the Planetary and Artificial Intelligence Laboratory (PAI) at Southern University of Science and Technology. NASA imagery is credited visual context; its use does not imply NASA endorsement.'
 });
 Object.assign(english, {
@@ -70,13 +71,27 @@ Object.assign(english, {
  releaseVerified:'Verified release available. Download the installer or portable edition directly.',
  releaseError:'Download information is temporarily unavailable. Refresh this page or view all releases below.',
  faq3A:'DEM is optional in ECHO. Use optical imagery alone, or choose a DEM-capable model and provide measured elevation over a four-times wider footprint. ECHO does not generate super-resolution or monocular terrain.',
- trainDescription:'Follow training curves, validation metrics, optional measured DEM context and segmentation contours. Each task keeps its own data and models.'
+ trainDescription:'Train an ECHO model and follow its curves, validation metrics and segmentation previews. With a DEM-capable model, inspect measured terrain over a 4× wider context; without DEM, the segmentation view expands.',
+ cap2Title:'Measured terrain, when available',cap2:'Optional DEM context over 4× the optical window’s side length. Optical-only segmentation works without it.',
+ predictDescription:'Use the model’s saved single-scale or pyramid recipe for batch segmentation. Follow the queue, inspect masks and boundaries, and organize outputs by image or format.',
+ tutorialIntro:'Four short lessons cover annotation, training, active learning and inference. These recorded demonstrations illustrate the workflow; the current release uses ECHO, with optional measured DEM and no generated terrain.',
+ tutorialNote:'Recorded workflow demonstration · Illustrative results · Current core: ECHO',
+ trainNote:'Recorded interface example. Current ECHO uses optional measured DEM, not generated terrain; illustrated metrics are not a general accuracy claim.',
+ exampleLabel:'Recorded interface example · Current segmentation core: ECHO',
+ screenshotNote:'Recorded interface examples. See the ECHO section for the current architecture; results depend on task, data and resolution.'
 });
 Object.assign(zh, {
  releaseVerified:'已验证版本可用，可直接下载安装包或便携版。',
  releaseError:'暂时无法读取下载信息，请刷新页面，或查看下方的所有版本。',
  faq3A:'ECHO 的 DEM 输入是可选的。可以只使用光学影像；选择支持 DEM 的模型后，也可提供四倍边长范围的实测地形。ECHO 不生成超分或单目地形。',
- trainDescription:'查看训练曲线、验证指标、可选的实测 DEM 上下文和分割轮廓。不同任务分别保存数据与模型。'
+ trainDescription:'训练 ECHO 模型，查看曲线、验证指标和分割样例。使用支持 DEM 的模型时，可并排查看光学窗口边长 4 倍范围的实测地形；不使用 DEM 时放大分割视图。',
+ cap2Title:'实测地形，按需加入',cap2:'可选光学窗口边长 4 倍范围的 DEM 上下文，也可只用光学影像分割。',
+ predictDescription:'按模型保存的单尺度或金字塔方案批量分割，查看文件队列、mask 和目标边界，按影像或格式组织输出。',
+ tutorialIntro:'四段短教程介绍标注、训练、主动学习与推理。录制演示用于说明操作流程；当前版本采用 ECHO，可选实测 DEM，不再生成地形。',
+ tutorialNote:'录制流程演示 · 结果仅作示例 · 当前核心：ECHO',
+ trainNote:'录制界面示例。当前 ECHO 使用可选实测 DEM，不生成地形；图示指标不代表所有数据上的精度。',
+ exampleLabel:'录制界面示例 · 当前分割核心：ECHO',
+ screenshotNote:'录制界面示例。当前架构请参见 ECHO 说明；实际效果取决于任务、数据与分辨率。'
 });
 const byId = id => document.getElementById(id);
 const text = key => (language === 'zh' ? zh[key] : english[key]) || english[key] || key;
@@ -85,7 +100,7 @@ function translate() {
  document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = text(el.dataset.i18n); });
  byId('language').textContent = language === 'zh' ? 'EN' : '中文';
  byId('language').setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换为中文');
- document.querySelectorAll('[data-manual-link]').forEach(a => a.href = language === 'zh' ? 'manual/index.html' : 'manual/en.html');
+ document.querySelectorAll('[data-manual-link]').forEach(a => a.href = (language === 'zh' ? 'manual/index.html' : 'manual/en.html') + (a.dataset.manualAnchor ? `#${a.dataset.manualAnchor}` : ''));
   document.querySelectorAll('[data-manual-download]').forEach(a => a.href = `manual/POF-Workbench-Manual-${language.toUpperCase()}.pdf`);
   document.title = language === 'zh' ? 'POF Workbench — 行星影像工作台' : 'POF Workbench — Planetary image annotation and segmentation';
  renderView(false); renderRelease(); renderTutorial();
@@ -95,7 +110,7 @@ const views = {
  project:{src:'assets/projects.webp',alt:'POF project and task overview in dark appearance',number:'02'},
  active:{src:'assets/active-learning.webp',alt:'POF active learning workspace with a selectable trained model',number:'03'},
  annotate: { src:'assets/annotation.webp', alt:'POF annotation canvas and floating editing tools', number:'01' },
- train: { src:'assets/training.webp', alt:'POF training view with demonstration validation curves and terrain estimates', number:'04' },
+ train: { src:'assets/training.webp', alt:'Recorded POF training interface; see the ECHO section for the current model architecture', number:'04' },
  predict: { src:'assets/predict.webp', alt:'POF batch inference workspace and file queue', number:'05' }
 };
 let imageRequest = 0;

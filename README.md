@@ -12,6 +12,7 @@ Visit **https://baozi-pei.github.io/POF-Releases/** for the product website and 
 - Responsive layouts, keyboard navigation and reduced-motion support.
 - Downloads use a verified same-origin `downloads.json` snapshot, refreshed from the latest stable GitHub Release when its API is reachable. Drafts, incomplete uploads and zero-byte files are not advertised. Primary links download the installer directly, including when JavaScript is disabled.
 - A locally hosted illustrated Chinese user manual.
+- English and Chinese architecture descriptions and manuals cover the current ECHO segmentation core, optional measured DEM context and saved inference-scale recipes. See [the architecture content notes](docs/echo-architecture.md).
 
 ## Deploy to GitHub Pages
 

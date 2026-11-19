@@ -1,20 +1,20 @@
 {
   "draft": false,
   "prerelease": false,
-  "tag_name": "v0.3.11",
+  "tag_name": "v0.3.13",
   "assets": [
     {
-      "name": "POF-Workbench-ECHO-0.3.11-portable.zip",
-      "size": 760496984,
-      "digest": "sha256:e79276f39c020e708b6b7455a95e56840adc8b768885701d5aa27d3e4e0cb45a",
-      "browser_download_url": "https://github.com/Baozi-Pei/POF-Releases/releases/download/v0.3.11/POF-Workbench-ECHO-0.3.11-portable.zip",
+      "name": "POF-Workbench-ECHO-0.3.13-portable.zip",
+      "size": 760514626,
+      "digest": "sha256:17196f90b60c582560ec098eaf9d5f74a69073b956dbbdc6048851da526fa57b",
+      "browser_download_url": "https://github.com/Baozi-Pei/POF-Releases/releases/download/v0.3.13/POF-Workbench-ECHO-0.3.13-portable.zip",
       "state": "uploaded"
     },
     {
       "name": "POF-Workbench-Setup.exe",
-      "size": 681463572,
-      "digest": "sha256:e31043eb41a70343666665dbdaa242d2b21d5c1f4d42c73fa32c380b980ff09a",
-      "browser_download_url": "https://github.com/Baozi-Pei/POF-Releases/releases/download/v0.3.11/POF-Workbench-Setup.exe",
+      "size": 681482339,
+      "digest": "sha256:ec417f9be7d59d2e6ad13ba93e42ead8bacb79432abd14670f4958d8fb61a915",
+      "browser_download_url": "https://github.com/Baozi-Pei/POF-Releases/releases/download/v0.3.13/POF-Workbench-Setup.exe",
       "state": "uploaded"
     }
   ]

@@ -5,7 +5,7 @@ const zh = {
  skip:'跳到正文',navProduct:'工作台',navWorkflow:'工作流程',navImagery:'火星影像',navDownload:'下载',
  heroEyebrow:'行星影像分析',pofDefinition:'行星观测基础模型 · POF',heroTitle1:'POF',heroTitle2:'Workbench.',heroDescription:'行星影像标注、模型训练与批量分割。<br>在同一个工作台中，完成从标签到分割结果的处理。',heroCta:'获取 Windows 版',explore:'探索工作台',
  productEyebrow:'01 / 工作台',productTitle:'影像标注。模型训练。<br>批量分割。',productIntro:'标注地貌，训练模型，处理下一幅影像。让影像、标签和模型在同一个桌面工作台中衔接。',
- tabAnnotate:'标注',tabTrain:'训练',tabPredict:'推理',annotateTitle:'完整画布，精细标注。',annotateDescription:'大画布配合多边形、画笔、橡皮和套索。打开已有 mask 或 Shapefile 标签，继续修改和完善。',annotateNote:'TIFF 与常见图像 · PNG mask 与 SHP',
+ tabAnnotate:'标注',tabTrain:'训练',tabPredict:'推理',annotateTitle:'完整画布，精细标注。',annotateDescription:'独立标注窗口可与主工作台同时操作。重新打开时可接着上次的影像，继续编辑已有 mask 或 Shapefile。',annotateNote:'TIFF 与常见图像 · PNG mask 与 SHP',
  trainTitle:'模型的变化，看得见。',trainDescription:'查看训练曲线、验证指标和预测轮廓，按需加入实测地形。为不同任务分别保存数据与模型。',trainNote:'截图中的训练指标与地形为演示内容，不代表实际精度。',
  predictTitle:'从一幅影像，到整批结果。',predictDescription:'使用训练好的模型批量分割影像。查看文件队列、处理阶段和失败信息，按需要组织输出结果。',predictNote:'PNG mask · 矢量结果 · 可选择输出组织方式',
  cap1Title:'面向行星影像',cap1:'原生 CTX 与大幅 TIFF，按视野读取细节，加载过程清晰可见。',cap2Title:'地形信息，按需加入',cap2:'可选 DEM，让地形参与处理流程。',cap3Title:'数据保留在本机',cap3:'在自己的电脑上工作，保留项目文件。',
